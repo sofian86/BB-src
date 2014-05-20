@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /search?q=pune
+Allow: /court/Happy Colony Community Hall/1
+Allow: /courts

@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home";
+    ViewBag.MetaDescription = "Search for Badminton Courts across the globe";
+    ViewBag.MetaKeywords = "Badminton, badminton courts, india badminton courts, badminton courts pune, badminton courts bangalore, badminton courts chennai,badminton courts mumbai";
+}
+@Styles.Render("~/Content/bb/Main")
+<div class="container">
+            <div class="row padtop70">
+                <div class="col-sm-6 col-sm-offset-3">
+                    @using(Html.BeginForm("Search", "Badminton", FormMethod.Get, new {@class="form-inline",@role="form" })){                    
+                    <div class="input-group input-group-lg">                        
+                        <input class="form-control" type="search" name="q" placeholder="Search badminton courts by Location or Name" autofocus>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary btn-small">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                    }                    
+                </div>
+            </div>            
+        </div>

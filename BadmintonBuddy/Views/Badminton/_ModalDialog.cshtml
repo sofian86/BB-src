@@ -1,0 +1,71 @@
+﻿<div class="modal fade" id="newCourtInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <h1>
+                        Court Information</h1>
+                </h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("AdditionalClub", "Badminton", new { id="frmAdditionalClub"}))
+                {                            
+                    <div class="form-group">
+                        <label for="court-name">
+                            Court Name</label>
+                        <input class="form-control" id="CourtName" placeholder="Enter the name of the Court/Club">
+                    </div>
+                    <div class="form-group">
+                        <label for="court-address">
+                            Court Location</label>
+                        <textarea class="form-control" id="Address" rows="3" placeholder="Address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="court-additional">
+                            Additional Information</label>
+                        <textarea class="form-control" id="AdditionalInfo" rows="5" placeholder="Additional information like fees, website, contact nos. etc."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            Email</label>
+                            <span class="glyphicon glyphicon-question-sign" id="email" data-toggle="tooltip" data-placement="right" title data-original-title="Please provide email so that we can get in touch with you for any more details on the information"></span>                                                        
+                        <input class="form-control" id="Email" placeholder="Enter your email address">
+                    </div>  
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="newCourtSubmit">Submit</button>
+                        <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {        
+        $("#newCourtSubmit").click(function () {
+            var addnclub = { CourtName: $("#CourtName").val(), Address: $("#Address").val(), AdditionalInfo: $("#AdditionalInfo").val(),Email:$("#Email").val() };
+            $.ajax({
+                type: "GET",                
+                url: "@Url.Action("AdditionalClub")",
+                dataType: "json",
+                data: addnclub,
+                processData: true,
+//                success: function (data) {
+//                    alert("im back");
+//                    alert(data);
+//                },
+//                error: function (xhr, ajaxOptions, error) {
+//                    alert(xhr.status);
+//                    alert("Error: " + xhr.responseText);
+//                }
+            });
+            $("#newCourtSubmit").html("Saved");
+            $("#newCourtSubmit").attr("disabled", true);
+                        
+        });
+    });
+</script>

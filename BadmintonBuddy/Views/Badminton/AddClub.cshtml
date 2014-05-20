@@ -1,0 +1,141 @@
+﻿@model BadmintonBuddy.Models.ClubViewModel
+
+@{
+    ViewBag.Title = "AddClub";
+}
+
+<div class="container">
+<h2>AddClub</h2>
+<div class="row">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ClubViewModel</legend>
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClubName)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.ClubName,  new{ @class="form-control" })
+            @Html.ValidationMessageFor(model => model.ClubName)
+        </div>
+        </div>
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AreaTag)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.AreaTag, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AreaTag)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Phone)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Surface)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.EditorFor(model => model.Surface)
+            @Html.ValidationMessageFor(model => model.Surface)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Timings)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.Timings, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Timings)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fees)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.Fees, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Fees)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Website)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.Website, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Website)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NoOfCourts)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.EditorFor(model => model.NoOfCourts)
+            @Html.ValidationMessageFor(model => model.NoOfCourts)
+        </div>       
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.State)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.State)
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Country)
+        </div>
+        <div class="editor-field col-xs-6">
+            @Html.TextBoxFor(model => model.Country, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Country)
+        </div>
+        </div>
+        <div class="padtop10">
+        <p>
+            <input class="btn btn-primary" type="submit" value="Create" />
+        </p>
+        </div>
+    </fieldset>
+}
+</div>
+</div>

@@ -1,0 +1,157 @@
+﻿@model BadmintonBuddy.Models.Club
+@{
+    ViewBag.Title = @ViewBag.Title;
+    ViewBag.MetaDescription = @ViewBag.MetaDescription;
+    ViewBag.MetaKeywords = @ViewBag.MetaKeywords;
+}
+<div class="container">
+    
+    @Html.Partial("_ModalDialog")
+    
+    @Html.Partial("_ModalMessage")    
+    
+    <!--Main content row-->
+    <div class="row">
+        <div class="col-xs-12 panel">
+            <h1>@Model.ClubName</h1>
+            <div class="row">
+                <div class="col-xs-7">
+                    <!--Left Main Column-->
+                    <div class="row">
+                        <!--Address-->
+                        <div class="col-xs-3">
+                            Address
+                        </div>
+                        <div class="col-xs-8 col-sm-offset-1">
+                            <p>@Model.Address</p>
+                            <p>@Model.Area</p>
+                            <p>@Model.City.CityName.ToString().ToUpper()</p>
+                        </div>
+                    </div>
+                    <!--Address-->
+                    <div class="row">
+                        <!--Phone-->
+                        <div class="col-xs-3">
+                            Phone
+                        </div>
+                        <div class="col-xs-8 col-sm-offset-1">
+                            <p>@Model.ContactNo</p>
+                        </div>
+                    </div>
+                    <!--Phone-->
+                    <div class="row">
+                        <!--Timings-->
+                        <div class="col-xs-3">
+                            Timings
+                        </div>
+                        <div class="col-xs-8 col-sm-offset-1">
+                            <p>@Model.Timings</p>
+                        </div>
+                    </div>
+                    <!--Timings-->
+
+                    <div class="row">
+                        <!--Timings-->
+                        <div class="col-xs-3">
+                            No Of Courts
+                        </div>
+                        <div class="col-xs-8 col-sm-offset-1">
+                            <p>@Model.NoOfCourts</p>
+                        </div>
+                    </div>
+                    <!--Timings-->
+
+                    <div class="row">
+                        <!--Surface-->
+                        <div class="col-sm-3 col-xs-3">
+                            Surface
+                        </div>
+                        <div class="col-sm-8 col-xs-8 col-sm-offset-1">
+                            <p>@Model.Surface.SurfaceType</p>
+                        </div>
+                    </div>
+                    <!--Surface-->
+                    <div class="row">
+                        <!--Fees-->
+                        <div class="col-xs-3">
+                            Fees
+                        </div>
+                        <div class="col-xs-8 col-sm-offset-1">
+                            <p>@Model.Fees</p>
+                        </div>
+                    </div>
+                    <!--Fees-->
+                    <div class="row">
+                        <!--Website-->
+                        <div class="col-xs-3">
+                            Website
+                        </div>
+                        <div class="col-xs-8 col-sm-offset-1">
+                            <a href="@Model.Website">@Model.Website</a>
+                        </div>
+                    </div>
+                    <!--Website-->
+
+                    <!--Images-->
+                    @if (@ViewBag.ImageURL0!=null)
+                    {
+                    <div class="row padtop10">                        
+                        <div class="col-xs-12">
+                            <p>
+                                Images</p>
+                        </div>
+                        @if (@ViewBag.ImageURL0!=null)
+                        {
+                        <div class="col-md-4">
+                            <img class="img-responsive" src="@ViewBag.ImageURL0" /></div>
+                        }
+                        @if (@ViewBag.ImageURL1!=null)
+                        {
+                        <div class="col-md-4">
+                            <img class="img-responsive" src="@ViewBag.ImageURL1" /></div>
+                        }
+                        @if (@ViewBag.ImageURL2!=null)
+                        {
+                        <div class="col-md-4">
+                            <img class="img-responsive" src="@ViewBag.ImageURL2" /></div>                       
+                        }
+                    </div>
+                    }
+                    <!--Images-->
+                    <div class="col-xs-12">
+                        <a href="/search?q=@Model.City.CityName" class="pull-right"><h4>Other courts in @Model.City.CityName</h4></a>
+                    </div>
+                </div>
+                <!--Left Main Column-->
+                <!-- Main Column 2 -->
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!--Use Static images from the API instead of iFrame-->
+                            <iframe width="350" height="300" frameborder="0" scrolling="no"
+              marginheight="0" marginwidth="0" src=
+              "@Server.HtmlDecode(ViewBag.MapURL)&output=embed"></iframe>
+                            <br />
+                            <small><a href="@Server.HtmlDecode(ViewBag.MapURL)"
+              style="color:#0000FF;text-align:left">View Larger Map</a></small>
+                        </div>
+                    </div>
+                    <div class="row padtop10">
+                        <!-- Button for report error -->
+                        <div class="col-xs-10">
+                            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                                data-target="#newCourtInfo">
+                                New Court Information</button>
+                            <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal"
+                                data-target="#inCorrectData">
+                                Report problem with the court details</button>
+                        </div>
+                    </div>
+                    <!-- Button for report error -->
+                </div>
+                <!-- Main Column 2 -->
+            </div>
+        </div>
+    </div>
+    <!--Main content row-->
+</div>

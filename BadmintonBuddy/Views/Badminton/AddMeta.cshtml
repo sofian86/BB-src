@@ -1,0 +1,64 @@
+﻿@model BadmintonBuddy.Models.Metadata
+
+@{
+    ViewBag.Title = "AddMeta";
+}
+
+<div class="container">
+<h2>AddMeta</h2>
+
+@using (Html.BeginForm("AddMeta","Badminton"))
+{
+    @Html.ValidationSummary(true)
+    <div class="input-group">
+        ClubID
+        <label class="form-control">@ViewBag.ClubId</label>
+        <input type="hidden" id="ClubID" name="ClubID" value="@ViewBag.ClubId" />
+    </div>
+    
+    <div class="input-group">
+        MetadataType
+        <input type="text" id="MetadataType" name="MetadataType" class="form-control" placeholder="Map or Image" />
+    </div>
+    
+    <div class="input-group">
+        MetadataValue
+        <textarea rows="8" cols="50" id="MetadataValue" name="MetadataValue" class="form-control" placeholder=""></textarea>
+    </div>
+    <div class="padtop10">
+    <input class="btn btn-primary" type="submit" value="Create" />        
+    <a href="/" class="btn btn-default">Cancel</a>
+    </div>
+
+    @*<fieldset>
+        <legend>Metadata</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MetadataType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MetadataType)
+            @Html.ValidationMessageFor(model => model.MetadataType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MetadataValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MetadataValue)
+            @Html.ValidationMessageFor(model => model.MetadataValue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClubID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ClubID, new { value = ViewBag.ClubId})
+            @Html.ValidationMessageFor(model => model.ClubID)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>*@
+}
+</div>

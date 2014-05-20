@@ -1,0 +1,90 @@
+﻿@model IEnumerable<BadmintonBuddy.Models.SearchClubViewModel>
+@{
+    ViewBag.Title = @ViewBag.Title;
+}
+<div class="container">
+    <div class="page-header">
+        <h2>
+            Search results for @ViewBag.Searchterm</h2>
+        <p class="text-muted">
+            Filter by Area : <a href="#">KOTHRUD</a>&nbsp;,&nbsp;<a href="#">DECCAN</a>&nbsp;,&nbsp;<a
+                href="#">AUNDH</a></p>
+    </div>
+    <!--Modal Dialog -->
+    @Html.Partial("_ModalDialog")
+    <!--Modal Dialog -->
+    <div class="row">
+        @if (Model.Count() == 0)
+        {
+            <h3 class="col-sm-12 text-danger" id="nosearch">
+                No courts found for @ViewBag.Searchterm.<a href="#" data-toggle="modal" data-target="#newCourtInfo">If
+                    you know any please let us know.</a>
+            </h3>
+        }
+        else
+        {
+            <div class="col-sm-10">
+                @foreach (var item in Model)
+                {
+                    <div class="row panel">
+                        <div class="col-sm-7">
+                            <h4>
+                                <a class="courtlnk" href="/court/@item.club.ClubName/@item.club.ClubID">@item.club.ClubName</a></h4>
+                            <p>
+                                <a href="/search?q=@item.club.Area">@item.club.Area.ToUpper()</a> > @item.club.Address, @item.club.Area,
+                                @item.club.City.CityName.ToUpper()</p>
+                            <p>
+                                Court:<strong>@item.club.Surface.SurfaceType</strong></p>
+                            <p>
+                                Fees:<strong>@item.club.Fees</strong></p>
+                            <p>
+                                Timings:<strong>@item.club.Timings</strong></p>
+                            <p>
+                                Contact:<strong>@item.club.ContactNo</strong>
+                            </p>
+                        </div>
+                        @foreach (var meta in item.metaDataList)
+                        {
+                            if (meta.MetadataType.Equals("Map"))
+                            {
+                                <div class="col-sm-3 padtop10 hidden-xs">
+                                    <iframe width="220" height="150" frameborder="0" scrolling="no" marginheight="0"
+                                    marginwidth="0" src="@Server.HtmlDecode(meta.MetadataValue)&output=embed"></iframe>
+                                    <br />
+                                    <small><a href="@Server.HtmlDecode(meta.MetadataValue)"
+                                    style="color: #0000FF; text-align: left">View Larger Map</a></small>
+                                </div>
+                                break;
+
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        }
+        <!--div class="col-sm-3 marleft10 panel">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    Players in Pune</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        First
+                    </div>
+                    <div class="col-sm-6">
+                        Second
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        Third
+                    </div>
+                    <div class="col-sm-6">
+                        Fourth
+                    </div>
+                </div>
+            </div>
+        </div-->
+    </div>
+</div>

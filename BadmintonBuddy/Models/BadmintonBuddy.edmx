@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BadmintonBuddyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="BadmintonBuddyModelStoreContainer">
+          <EntitySet Name="AdditionalClubInfo" EntityType="BadmintonBuddyModel.Store.AdditionalClubInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="City" EntityType="BadmintonBuddyModel.Store.City" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Clubs" EntityType="BadmintonBuddyModel.Store.Clubs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClubToCoach" EntityType="BadmintonBuddyModel.Store.ClubToCoach" store:Type="Tables" store:Schema="dbo" store:Name="ClubToCoach">
+            <DefiningQuery>SELECT 
+      [ClubToCoach].[ClubID] AS [ClubID], 
+      [ClubToCoach].[CoachID] AS [CoachID]
+      FROM [dbo].[ClubToCoach] AS [ClubToCoach]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Coach" EntityType="BadmintonBuddyModel.Store.Coach" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Country" EntityType="BadmintonBuddyModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Message" EntityType="BadmintonBuddyModel.Store.Message" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Metadata" EntityType="BadmintonBuddyModel.Store.Metadata" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="State" EntityType="BadmintonBuddyModel.Store.State" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Surface" EntityType="BadmintonBuddyModel.Store.Surface" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_City_State" Association="BadmintonBuddyModel.Store.FK_City_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clubs_City" Association="BadmintonBuddyModel.Store.FK_Clubs_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Clubs" EntitySet="Clubs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clubs_Surface" Association="BadmintonBuddyModel.Store.FK_Clubs_Surface">
+            <End Role="Surface" EntitySet="Surface" />
+            <End Role="Clubs" EntitySet="Clubs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClubToCoach_Clubs" Association="BadmintonBuddyModel.Store.FK_ClubToCoach_Clubs">
+            <End Role="Clubs" EntitySet="Clubs" />
+            <End Role="ClubToCoach" EntitySet="ClubToCoach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClubToCoach_Coach" Association="BadmintonBuddyModel.Store.FK_ClubToCoach_Coach">
+            <End Role="Coach" EntitySet="Coach" />
+            <End Role="ClubToCoach" EntitySet="ClubToCoach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metadata_Clubs" Association="BadmintonBuddyModel.Store.FK_Metadata_Clubs">
+            <End Role="Clubs" EntitySet="Clubs" />
+            <End Role="Metadata" EntitySet="Metadata" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="BadmintonBuddyModel.Store.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AdditionalClubInfo">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CourtName" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="500" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="isRead" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clubs">
+          <Key>
+            <PropertyRef Name="ClubID" />
+          </Key>
+          <Property Name="ClubID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClubName" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Address" Type="varchar" MaxLength="1000" />
+          <Property Name="Area" Type="varchar" MaxLength="200" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="SurfaceID" Type="int" />
+          <Property Name="Fees" Type="varchar" MaxLength="200" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="200" />
+          <Property Name="Website" Type="varchar" MaxLength="200" />
+          <Property Name="Timings" Type="varchar" MaxLength="100" />
+          <Property Name="NoOfCourts" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'E:\BADMINTONBUDDY\CODE\BADMINTONBUDDY\BADMINTONBUDDY\APP_DATA\BADMINTONBUDDY.MDF.dbo.ClubToCoach' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ClubToCoach">
+          <Key>
+            <PropertyRef Name="ClubID" />
+            <PropertyRef Name="CoachID" />
+          </Key>
+          <Property Name="ClubID" Type="int" Nullable="false" />
+          <Property Name="CoachID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="CoachID" />
+          </Key>
+          <Property Name="CoachID" Type="int" Nullable="false" />
+          <Property Name="CoachName" Type="varchar" MaxLength="100" />
+          <Property Name="Details" Type="varchar" MaxLength="500" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MessageType" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Message1" Type="varchar" MaxLength="150" />
+          <Property Name="Message2" Type="varchar" MaxLength="150" />
+          <Property Name="Message3" Type="varchar" MaxLength="150" />
+          <Property Name="Message4" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Metadata">
+          <Key>
+            <PropertyRef Name="MetadataID" />
+          </Key>
+          <Property Name="MetadataID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MetadataType" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="MetadataValue" Type="varchar(max)" Nullable="false" />
+          <Property Name="ClubID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Surface">
+          <Key>
+            <PropertyRef Name="SurfaceID" />
+          </Key>
+          <Property Name="SurfaceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SurfaceType" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_City_State">
+          <End Role="State" Type="BadmintonBuddyModel.Store.State" Multiplicity="1" />
+          <End Role="City" Type="BadmintonBuddyModel.Store.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clubs_City">
+          <End Role="City" Type="BadmintonBuddyModel.Store.City" Multiplicity="1" />
+          <End Role="Clubs" Type="BadmintonBuddyModel.Store.Clubs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Clubs">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clubs_Surface">
+          <End Role="Surface" Type="BadmintonBuddyModel.Store.Surface" Multiplicity="0..1" />
+          <End Role="Clubs" Type="BadmintonBuddyModel.Store.Clubs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surface">
+              <PropertyRef Name="SurfaceID" />
+            </Principal>
+            <Dependent Role="Clubs">
+              <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClubToCoach_Clubs">
+          <End Role="Clubs" Type="BadmintonBuddyModel.Store.Clubs" Multiplicity="1" />
+          <End Role="ClubToCoach" Type="BadmintonBuddyModel.Store.ClubToCoach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clubs">
+              <PropertyRef Name="ClubID" />
+            </Principal>
+            <Dependent Role="ClubToCoach">
+              <PropertyRef Name="ClubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClubToCoach_Coach">
+          <End Role="Coach" Type="BadmintonBuddyModel.Store.Coach" Multiplicity="1" />
+          <End Role="ClubToCoach" Type="BadmintonBuddyModel.Store.ClubToCoach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="CoachID" />
+            </Principal>
+            <Dependent Role="ClubToCoach">
+              <PropertyRef Name="CoachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Metadata_Clubs">
+          <End Role="Clubs" Type="BadmintonBuddyModel.Store.Clubs" Multiplicity="1" />
+          <End Role="Metadata" Type="BadmintonBuddyModel.Store.Metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clubs">
+              <PropertyRef Name="ClubID" />
+            </Principal>
+            <Dependent Role="Metadata">
+              <PropertyRef Name="ClubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="BadmintonBuddyModel.Store.Country" Multiplicity="1" />
+          <End Role="State" Type="BadmintonBuddyModel.Store.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BadmintonBuddyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="BadmintonBuddyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="BadmintonBuddyModel.City" />
+          <EntitySet Name="Clubs" EntityType="BadmintonBuddyModel.Club" />
+          <EntitySet Name="Coaches" EntityType="BadmintonBuddyModel.Coach" />
+          <EntitySet Name="Countries" EntityType="BadmintonBuddyModel.Country" />
+          <EntitySet Name="Metadatas" EntityType="BadmintonBuddyModel.Metadata" />
+          <EntitySet Name="States" EntityType="BadmintonBuddyModel.State" />
+          <EntitySet Name="Surfaces" EntityType="BadmintonBuddyModel.Surface" />
+          <AssociationSet Name="FK_City_State" Association="BadmintonBuddyModel.FK_City_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clubs_City" Association="BadmintonBuddyModel.FK_Clubs_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Clubs" EntitySet="Clubs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clubs_Surface" Association="BadmintonBuddyModel.FK_Clubs_Surface">
+            <End Role="Surface" EntitySet="Surfaces" />
+            <End Role="Clubs" EntitySet="Clubs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metadata_Clubs" Association="BadmintonBuddyModel.FK_Metadata_Clubs">
+            <End Role="Clubs" EntitySet="Clubs" />
+            <End Role="Metadata" EntitySet="Metadatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="BadmintonBuddyModel.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="ClubToCoach" Association="BadmintonBuddyModel.ClubToCoach">
+            <End Role="Clubs" EntitySet="Clubs" />
+            <End Role="Coach" EntitySet="Coaches" />
+          </AssociationSet>
+          <EntitySet Name="AdditionalClubInfoes" EntityType="BadmintonBuddyModel.AdditionalClubInfo" />
+          <EntitySet Name="Messages" EntityType="BadmintonBuddyModel.Message" />
+        </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="State" Relationship="BadmintonBuddyModel.FK_City_State" FromRole="City" ToRole="State" />
+          <NavigationProperty Name="Clubs" Relationship="BadmintonBuddyModel.FK_Clubs_City" FromRole="City" ToRole="Clubs" />
+        </EntityType>
+        <EntityType Name="Club">
+          <Key>
+            <PropertyRef Name="ClubID" />
+          </Key>
+          <Property Name="ClubID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClubName" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="Area" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="SurfaceID" Type="Int32" />
+          <Property Name="Fees" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Website" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Timings" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="NoOfCourts" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="BadmintonBuddyModel.FK_Clubs_City" FromRole="Clubs" ToRole="City" />
+          <NavigationProperty Name="Surface" Relationship="BadmintonBuddyModel.FK_Clubs_Surface" FromRole="Clubs" ToRole="Surface" />
+          <NavigationProperty Name="Metadatas" Relationship="BadmintonBuddyModel.FK_Metadata_Clubs" FromRole="Clubs" ToRole="Metadata" />
+          <NavigationProperty Name="Coaches" Relationship="BadmintonBuddyModel.ClubToCoach" FromRole="Clubs" ToRole="Coach" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="CoachID" />
+          </Key>
+          <Property Name="CoachID" Type="Int32" Nullable="false" />
+          <Property Name="CoachName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Details" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Clubs" Relationship="BadmintonBuddyModel.ClubToCoach" FromRole="Coach" ToRole="Clubs" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="States" Relationship="BadmintonBuddyModel.FK_State_Country" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Metadata">
+          <Key>
+            <PropertyRef Name="MetadataID" />
+          </Key>
+          <Property Name="MetadataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MetadataType" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="MetadataValue" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ClubID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Club" Relationship="BadmintonBuddyModel.FK_Metadata_Clubs" FromRole="Metadata" ToRole="Clubs" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="BadmintonBuddyModel.FK_City_State" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="BadmintonBuddyModel.FK_State_Country" FromRole="State" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Surface">
+          <Key>
+            <PropertyRef Name="SurfaceID" />
+          </Key>
+          <Property Name="SurfaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurfaceType" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Clubs" Relationship="BadmintonBuddyModel.FK_Clubs_Surface" FromRole="Surface" ToRole="Clubs" />
+        </EntityType>
+        <Association Name="FK_City_State">
+          <End Role="State" Type="BadmintonBuddyModel.State" Multiplicity="1" />
+          <End Role="City" Type="BadmintonBuddyModel.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clubs_City">
+          <End Role="City" Type="BadmintonBuddyModel.City" Multiplicity="1" />
+          <End Role="Clubs" Type="BadmintonBuddyModel.Club" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Clubs">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clubs_Surface">
+          <End Role="Surface" Type="BadmintonBuddyModel.Surface" Multiplicity="0..1" />
+          <End Role="Clubs" Type="BadmintonBuddyModel.Club" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surface">
+              <PropertyRef Name="SurfaceID" />
+            </Principal>
+            <Dependent Role="Clubs">
+              <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Metadata_Clubs">
+          <End Role="Clubs" Type="BadmintonBuddyModel.Club" Multiplicity="1" />
+          <End Role="Metadata" Type="BadmintonBuddyModel.Metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clubs">
+              <PropertyRef Name="ClubID" />
+            </Principal>
+            <Dependent Role="Metadata">
+              <PropertyRef Name="ClubID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="BadmintonBuddyModel.Country" Multiplicity="1" />
+          <End Role="State" Type="BadmintonBuddyModel.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClubToCoach">
+          <End Role="Clubs" Type="BadmintonBuddyModel.Club" Multiplicity="*" />
+          <End Role="Coach" Type="BadmintonBuddyModel.Coach" Multiplicity="*" />
+        </Association>
+        <EntityType Name="AdditionalClubInfo">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Type="Int32" Name="ItemID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CourtName" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AdditionalInfo" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="isRead" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Type="Int32" Name="MessageID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="MessageType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message1" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message2" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message3" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message4" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BadmintonBuddyModelStoreContainer" CdmEntityContainer="BadmintonBuddyEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clubs">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.Club">
+              <MappingFragment StoreEntitySet="Clubs">
+                <ScalarProperty Name="ClubID" ColumnName="ClubID" />
+                <ScalarProperty Name="ClubName" ColumnName="ClubName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
+                <ScalarProperty Name="Fees" ColumnName="Fees" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Timings" ColumnName="Timings" />
+                <ScalarProperty Name="NoOfCourts" ColumnName="NoOfCourts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coaches">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.Coach">
+              <MappingFragment StoreEntitySet="Coach">
+                <ScalarProperty Name="CoachID" ColumnName="CoachID" />
+                <ScalarProperty Name="CoachName" ColumnName="CoachName" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Metadatas">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.Metadata">
+              <MappingFragment StoreEntitySet="Metadata">
+                <ScalarProperty Name="MetadataID" ColumnName="MetadataID" />
+                <ScalarProperty Name="MetadataType" ColumnName="MetadataType" />
+                <ScalarProperty Name="MetadataValue" ColumnName="MetadataValue" />
+                <ScalarProperty Name="ClubID" ColumnName="ClubID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Surfaces">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.Surface">
+              <MappingFragment StoreEntitySet="Surface">
+                <ScalarProperty Name="SurfaceID" ColumnName="SurfaceID" />
+                <ScalarProperty Name="SurfaceType" ColumnName="SurfaceType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ClubToCoach" TypeName="BadmintonBuddyModel.ClubToCoach" StoreEntitySet="ClubToCoach">
+            <EndProperty Name="Clubs">
+              <ScalarProperty Name="ClubID" ColumnName="ClubID" />
+            </EndProperty>
+            <EndProperty Name="Coach">
+              <ScalarProperty Name="CoachID" ColumnName="CoachID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="AdditionalClubInfoes">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.AdditionalClubInfo">
+              <MappingFragment StoreEntitySet="AdditionalClubInfo">
+                <ScalarProperty Name="isRead" ColumnName="isRead" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CourtName" ColumnName="CourtName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="BadmintonBuddyModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="Message4" ColumnName="Message4" />
+                <ScalarProperty Name="Message3" ColumnName="Message3" />
+                <ScalarProperty Name="Message2" ColumnName="Message2" />
+                <ScalarProperty Name="Message1" ColumnName="Message1" />
+                <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="BadmintonBuddy">
+        <EntityTypeShape EntityType="BadmintonBuddyModel.City" Width="1.5" PointX="5.25" PointY="3.5" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BadmintonBuddyModel.Club" Width="1.5" PointX="7.5" PointY="2.625" Height="3.9033007812499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="BadmintonBuddyModel.Coach" Width="1.5" PointX="9.75" PointY="2.25" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BadmintonBuddyModel.Country" Width="1.5" PointX="0.75" PointY="3.75" Height="1.5956835937499991" IsExpanded="true" />
+        <EntityTypeShape EntityType="BadmintonBuddyModel.Metadata" Width="1.5" PointX="9.75" PointY="4.875" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BadmintonBuddyModel.State" Width="1.5" PointX="3" PointY="3.5" Height="1.9802864583333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="BadmintonBuddyModel.Surface" Width="1.5" PointX="5.25" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <AssociationConnector Association="BadmintonBuddyModel.FK_City_State" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.4901432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="4.4901432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="BadmintonBuddyModel.FK_Clubs_City" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="4.4901432291666667" />
+          <ConnectorPoint PointX="7.5" PointY="4.4901432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="BadmintonBuddyModel.FK_Clubs_Surface" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="1.5478417968749998" />
+          <ConnectorPoint PointX="8.25" PointY="1.5478417968749998" />
+          <ConnectorPoint PointX="8.25" PointY="2.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="BadmintonBuddyModel.FK_Metadata_Clubs" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="5.701650390625" />
+          <ConnectorPoint PointX="9.75" PointY="5.701650390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="BadmintonBuddyModel.FK_State_Country" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.547841796875" />
+          <ConnectorPoint PointX="3" PointY="4.547841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="BadmintonBuddyModel.ClubToCoach" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="3.4276432291666667" />
+          <ConnectorPoint PointX="9.75" PointY="3.4276432291666667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="BadmintonBuddyModel.AdditionalClubInfo" Width="1.5" PointX="0.75" PointY="6.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="BadmintonBuddyModel.Message" Width="1.5" PointX="3.375" PointY="6.75" Height="2.1725878906249996" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

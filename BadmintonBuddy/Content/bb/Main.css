@@ -1,0 +1,17 @@
+﻿body{  
+  /*background-image:url("http://image.shutterstock.com/display_pic_with_logo/327382/112110941/stock-photo-shuttlecock-on-badminton-racket-112110941.jpg");
+  background-repeat:no-repeat; 
+  background-size:cover;*/ 
+}
+
+/* Do not show search on the homepage */
+#searchnav,.searchtoggle{
+display:none !important;
+}
+
+/* Do not show search on the homepage */    
+  
+
+
+
+
