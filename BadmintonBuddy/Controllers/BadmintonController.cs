@@ -60,7 +60,42 @@ namespace BadmintonBuddy.Controllers
             ViewBag.ClubId = newClubAdded.ClubID.ToString();
             return View("AddMeta");
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">This is clubId</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult EditClub(string name)
+        {
+            Club club = repository.GetClub(Int32.Parse(name));            
+            ClubViewModel viewModel = new ClubViewModel();
+            viewModel = ClubToClubView(club);
+            return View(viewModel);
+        }
 
+        [HttpPost]
+        public ActionResult EditClub(ClubViewModel editedClub)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.EditClub(editedClub);
+
+            }
+            ViewBag.Message = "Club Edited";
+            return View("Message");
+        }
+
+        private ClubViewModel ClubToClubView(Club clubToConvert)
+        {
+            ClubViewModel viewModel = new ClubViewModel();
+            viewModel.Club = clubToConvert;
+            viewModel.City = clubToConvert.City.CityName;
+            viewModel.State = clubToConvert.City.State.StateName;
+            viewModel.Country = clubToConvert.City.State.Country.CountryName;
+            return viewModel;
+
+        }
 
 
         
@@ -83,6 +118,17 @@ namespace BadmintonBuddy.Controllers
             }
             return 0;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">This is clubid</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult AddMeta(string name)
+        {
+            ViewBag.ClubId = name;
+            return View();
+        }
 
         [HttpPost]
         public ActionResult AddMeta(Metadata metaData)
@@ -97,8 +143,7 @@ namespace BadmintonBuddy.Controllers
             {
                 ViewBag.ClubId = "Error";
                 return View("AddMeta");
-            }
-            
+            }            
 
         }
 
