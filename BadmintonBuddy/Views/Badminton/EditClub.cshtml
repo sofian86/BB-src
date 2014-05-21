@@ -9,7 +9,7 @@
 <div class="row">
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
-
+    @Html.HiddenFor(model => model.Club.ClubID);
     <fieldset>
         <legend>ClubViewModel</legend>
         <div class="row">

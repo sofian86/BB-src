@@ -128,78 +128,15 @@ namespace BadmintonBuddy.Models
                 cityId = AddCity(editClubView.City, stateId);
             }
 
-            editClubView.Club.CityID = cityId;
-            entities.SaveChanges();
+            editClubView.Club.CityID = cityId;            
+            System.Data.Entity.DbContext dbContext = new System.Data.Entity.DbContext(entities,true);
+            dbContext.Entry(editClubView.Club).State = System.Data.EntityState.Modified;
+            dbContext.SaveChanges();
+            
             return editClubView.Club;            
         }
 
-        //public Club AddNewClub(ClubViewModel newClub)
-        //{
-        //    int countryId = 0;
-        //    if (!String.IsNullOrEmpty(newClub.Country.Trim()))
-        //    {
-        //        countryId = AddCountry(newClub.Country);
-        //    }
-
-        //    int stateId = 0;
-        //    if (!String.IsNullOrEmpty(newClub.State.Trim()))
-        //    {
-        //        stateId = AddState(newClub.State, countryId);
-        //    }
-
-        //    int cityId = 0;
-        //    if (!String.IsNullOrEmpty(newClub.ClubName.Trim()))
-        //    {
-        //        cityId = AddCity(newClub.City, stateId);
-        //    }
-
-        //    Club newClubtoAdd = new Club();
-        //    newClubtoAdd.CityID = cityId;
-
-        //    if (!String.IsNullOrEmpty(newClub.ClubName))
-        //    {
-        //        newClubtoAdd.ClubName = newClub.ClubName.Trim();
-        //    }
-            
-        //    if (!String.IsNullOrEmpty(newClub.Address))
-        //    {
-        //        newClubtoAdd.Address = newClub.Address.Trim();
-        //    }
-        //    if (!String.IsNullOrEmpty(newClub.AreaTag))
-        //    {
-        //        newClubtoAdd.Area = newClub.AreaTag.Trim();
-        //    }
-        //    if (!String.IsNullOrEmpty(newClub.Phone))
-        //    {
-        //        newClubtoAdd.ContactNo = newClub.Phone.Trim();
-        //    }
-        //    if (!String.IsNullOrEmpty(newClub.Fees))
-        //    {
-        //        newClubtoAdd.Fees = newClub.Fees.Trim();
-        //    }
-            
-        //    newClubtoAdd.NoOfCourts = newClub.NoOfCourts;
-        //    newClubtoAdd.SurfaceID = newClub.Surface;
-        //    if (!String.IsNullOrEmpty(newClub.Timings))
-        //    {
-        //        newClubtoAdd.Timings = newClub.Timings.Trim();
-        //    }
-        //    if (!String.IsNullOrEmpty(newClub.Website))
-        //    {
-        //        newClubtoAdd.Website = newClub.Website.Trim();
-        //    }           
-
-        //    entities.Clubs.AddObject(newClubtoAdd);
-        //    entities.SaveChanges();
-        //    return newClubtoAdd;
-            
-        //}
-
-        //public int EditClub(ClubViewModel editedClub)
-        //{
-            
-
-        //}
+        
 
         public Int32 AddMetadata(Metadata metaData)
         {
