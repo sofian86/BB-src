@@ -56,7 +56,7 @@ namespace BadmintonBuddy.Models
             var metadata = from m in entities.Metadatas
                            where m.ClubID == clubId && m.MetadataType == "Map"
                            select m;
-            if (metadata != null)
+            if (metadata.Count() > 0)
             {
                 return metadata.First<Metadata>().MetadataValue.ToString();
             }

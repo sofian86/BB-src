@@ -1,0 +1,23 @@
+﻿Title for All courts needs something meaningful
+Area tag needs to intelligent to take multiple values
+Courts page needs revamp - does not fit moment more things are added - may be add it area wise, some map view, text view with aggregation of country/states
+						  - add the https://developers.google.com/chart/interactive/docs/gallery/geomap#regionsexample as a map view, ensure map js loads only on this page(only for the option clicked)
+On the news page - add module which has badminton celebrity on social media
+On the court page also show nearby clubs - needs change in the db to add lat/lon as seperate fields
+										 - need to use the query to get the nearby location http://www.scribd.com/doc/2569355/Geo-Distance-Search-with-MySQL
+																							http://stackoverflow.com/questions/11112926/how-to-find-nearest-location-using-latitude-and-longitude-from-sql-database
+
+
+
+
+
+
+
+
+
+
+
+
+
+BUG:
+- Navs are not highlighted as per the page fix available here: http://chrisondotnet.com/2012/08/setting-active-link-twitter-bootstrap-navbar-aspnet-mvc/
