@@ -17,6 +17,27 @@
 .padleft5{
   padding-left:5px;
 }
+
+.martop10
+{
+    margin-top:10px;
+}
+
+#menunav>.navbar-nav>li>.active
+{
+    font-weight:bold;
+}
+
+.allcourts
+{
+    background-color:lightgoldenrodyellow;
+}
+
+.page-min-height
+{
+    min-height:750px;
+}
+
 .white-bg{
   background-color:#ffffff;
 }

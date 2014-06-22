@@ -12,7 +12,7 @@
     
     <!--Main content row-->
     <div class="row">
-        <div class="col-xs-12 panel">
+        <div class="col-xs-12 panel page-min-height">
             <h1>@Model.ClubName</h1>
             <div class="row">
                 <div class="col-xs-7">
@@ -126,6 +126,8 @@
                 <!-- Main Column 2 -->
                 <div class="col-md-5">
                     <div class="row">
+                    @if (ViewBag.MapURL!="")
+                    {
                         <div class="col-xs-12">
                             <!--Use Static images from the API instead of iFrame-->
                             <iframe width="350" height="300" frameborder="0" scrolling="no"
@@ -135,6 +137,7 @@
                             <small><a href="@Server.HtmlDecode(ViewBag.MapURL)"
               style="color:#0000FF;text-align:left">View Larger Map</a></small>
                         </div>
+                        }
                     </div>
                     <div class="row padtop10">
                         <!-- Button for report error -->
