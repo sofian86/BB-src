@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="All Courts New Layout" />    
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/bb/Site.css" rel="stylesheet" type="text/css" />
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery.min.js"></script>    
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+
+    <script type="text/javascript">
+        google.load('visualization', '1', { 'packages': ['geomap'] });
+        google.setOnLoadCallback(drawMap);
+
+        function drawMap() {
+            var data = google.visualization.arrayToDataTable([
+        ['Country', 'No Of Courts'],
+        ['India', 50],
+        ['United States', 35],
+        ['UK', 25],
+        ['Malaysia', 10],
+        ['China', 15]
+      ]);
+
+            var options = {};
+            options['dataMode'] = 'regions';
+            options['width'] = '100%';
+                      
+
+            var container = document.getElementById('mapdiv');
+            var geomap = new google.visualization.GeoMap(container);
+            geomap.draw(data, options);
+        };
+    
+    
+    
+    </script>
+
+
+    <title>All Courts</title>
+</head>
+<body class="padtop70">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="nav-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menunav">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.badmintonbuddy.com">Badmintonbuddy</a>
+                <!-- Responsive Search Bar  -->
+                <span class="input-group-btn">
+                    <button type="button" class="navbar-toggle btn btn-primary btn-small" data-toggle="collapse"
+                        data-target="#searchnav">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+                <div class="collapse navbar-collapse" id="searchnav">
+                    <form role="form">
+                    <div class="input-group input-group-lg">
+                        <input class="form-control" type="search" name="q" placeholder="Search badminton courts by Location or Name">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary btn-small">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                    </form>
+                </div>
+                <div class="collapse navbar-collapse" id="menunav">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Courts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container">
+            <div class="row panel page-min-height">
+                
+                <div class="col-sm-9 padtop70" id="mapdiv"></div>
+
+                <div class="col-sm-3 padtop70">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            <span class="badge pull-right">7</span>
+                            <h4 class="list-group-item-heading">India</h4>
+                            <p class="list-group-item-text">All Courts available in India</p>                                                   
+                        </a>                        
+
+                        <a href="#" class="list-group-item">                            
+                            <h5 class="list-group-item-heading">Pune</h5>                                                                             
+                        </a>
+                        <a href="#" class="list-group-item">                            
+                            <h5 class="list-group-item-heading">Bangalore</h5>                            
+                        </a>            
+                        
+                        
+                    </div>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            <span class="badge pull-right">10</span>
+                            <h4 class="list-group-item-heading">United States</h4>
+                            <p class="list-group-item-text">All Courts available in United States</p>                                                   
+                        </a>
+                        <a href="#" class="list-group-item">                            
+                            <h5 class="list-group-item-heading">Seattle</h5>                                                                             
+                        </a>
+                        <a href="#" class="list-group-item">                            
+                            <h5 class="list-group-item-heading">Bay Area</h5>                            
+                        </a>                    
+                    </div>
+
+
+                    
+                    
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+</body>
+</html>

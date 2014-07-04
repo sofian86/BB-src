@@ -59,10 +59,29 @@ table
     font-size:12px;
 }
 
-/*.olive-bcg{
-    background-color:Olive !important;
-    color:White !important;
-}*/
+.breadcrumb-custom
+{
+    list-style:none;
+    font-size:12px;
+    margin-top:5px;
+    padding-left:15px;    
+}
+
+.breadcrumb-custom>li
+{
+    display:inline-block
+}
+.breadcrumb-custom>li+li:before
+{
+    content: ">\00a0";
+    padding: 0 1px;
+    color:#ccc
+}
+
+.breadcrumb-custom>.active
+{
+    color:#999
+}
 
 .bold-font{
     font-weight:bold !important;

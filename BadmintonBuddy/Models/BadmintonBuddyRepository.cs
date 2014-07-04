@@ -36,6 +36,75 @@ namespace BadmintonBuddy.Models
 
         }
 
+        //public void DeleteClub(int ClubId)
+        //{
+        //    var club = from c in entities.Clubs
+        //               where c.ClubID == ClubId
+        //               select c;
+        //    entities.Clubs.DeleteObject(club.First());
+        //    entities.SaveChanges();
+        //}
+
+        public Dictionary<string,int> GetCountryofClubs()
+        {
+            var clubs = from c in entities.Clubs
+                        select c;
+            Dictionary<string, int> countryClubCount = new Dictionary<string, int>();
+            foreach (Club club in clubs)
+            {
+                if (countryClubCount.ContainsKey(club.City.State.Country.CountryName))
+                {
+                    countryClubCount[club.City.State.Country.CountryName] = countryClubCount[club.City.State.Country.CountryName] + 1;
+                }
+                else
+                {
+                    countryClubCount.Add(club.City.State.Country.CountryName, 1);
+                }
+            }
+            return countryClubCount;
+        }
+
+        public Dictionary<string, string> GetClubCity()
+        {
+            var clubs = from c in entities.Clubs
+                        select c;
+            Dictionary<string, string> countryToCity = new Dictionary<string, string>();
+            foreach (Club club in clubs)
+            {
+                if (countryToCity.ContainsKey(club.City.State.Country.CountryName))
+                {
+                    if (club.City.State.Country.CountryName == "United States")
+                    {
+                        if (!countryToCity[club.City.State.Country.CountryName].Contains(club.Area))
+                        {
+                            countryToCity[club.City.State.Country.CountryName] = countryToCity[club.City.State.Country.CountryName] + "," + club.Area;
+                        }
+                    }
+                    else
+                    {
+
+                        if (!countryToCity[club.City.State.Country.CountryName].Contains(club.City.CityName))
+                        {
+                            countryToCity[club.City.State.Country.CountryName] = countryToCity[club.City.State.Country.CountryName] + "," + club.City.CityName;
+                        }
+                    }
+                }
+                else
+                {
+                    if (club.City.State.Country.CountryName == "United States") //For US club it under area like Bay Area, Seattle Area instead of Bellevue, Redmond
+                    {
+                        countryToCity.Add(club.City.State.Country.CountryName, club.Area);
+                    }
+                    else
+                    {
+                        countryToCity.Add(club.City.State.Country.CountryName, club.City.CityName);
+                    }
+                    
+                }
+            }
+            return countryToCity;
+        }
+
         public int AdditionalClub(AdditionalClubInfo info)
         {
             entities.AdditionalClubInfoes.AddObject(info);

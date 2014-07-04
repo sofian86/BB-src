@@ -383,7 +383,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Metadata_Clubs">
-          <End Role="Clubs" Type="BadmintonBuddyModel.Club" Multiplicity="1" />
+          <End Role="Clubs" Type="BadmintonBuddyModel.Club" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Metadata" Type="BadmintonBuddyModel.Metadata" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clubs">

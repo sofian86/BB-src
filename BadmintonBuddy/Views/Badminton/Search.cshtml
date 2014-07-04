@@ -6,14 +6,22 @@
     <div class="page-header">
         <h2>
             Search results for @ViewBag.Searchterm</h2>
+            @if(@Model.Count() !=0)
+            {
         <p class="text-muted">
-            Filter by Area : <a href="#">KOTHRUD</a>&nbsp;,&nbsp;<a href="#">DECCAN</a>&nbsp;,&nbsp;<a
-                href="#">AUNDH</a></p>
+            Filter by Area :             
+            @foreach(var area in ViewBag.SearchFilters.Split(','))
+            {
+                <a href="/search?q=@area">@area.ToUpper()</a><span> || </span>  
+            }
+            <a class="text-danger" href="/search?q=@ViewBag.CityName">@ViewBag.CityName.ToUpper()</a>
+            </p>
+            }
     </div>
     <!--Modal Dialog -->
     @Html.Partial("_ModalDialog")
     <!--Modal Dialog -->
-    <div class="row">
+    <div itemscope itemtype="https://schema.org/SearchResultsPage" class="row">
         @if (Model.Count() == 0)
         {
             <h3 class="col-sm-12 text-danger" id="nosearch">
@@ -23,16 +31,16 @@
         }
         else
         {
-            <div class="col-sm-10">
+            <div itemscope itemtype="http://schema.org/SportsClub" class="col-sm-10">
                 @foreach (var item in Model)
                 {
                     <div class="row panel">
                         <div class="col-sm-7">
                             <h4>
-                                <a class="courtlnk" href="/court/@item.club.ClubName/@item.club.ClubID">@item.club.ClubName</a></h4>
-                            <p>
-                                <a href="/search?q=@item.club.Area">@item.club.Area.ToUpper()</a> > @item.club.Address, @item.club.Area,
-                                @item.club.City.CityName.ToUpper()</p>
+                                <a itemprop="name" class="courtlnk" href="/court/@item.club.ClubName/@item.club.ClubID">@item.club.ClubName</a></h4>
+                            <p itemprop="http://schema.org/PostalAddress">
+                                <a itemprop="addressRegion" href="/search?q=@item.club.Area">@item.club.Area.ToUpper()</a> ><span itemprop="streetAddress"> @item.club.Address, @item.club.Area</span>,
+                                <span itemprop="addressLocality">@item.club.City.CityName.ToUpper()</span></p>
                             <p>
                                 Court:<strong>@item.club.Surface.SurfaceType</strong></p>
                             <p>
@@ -40,14 +48,14 @@
                             <p>
                                 Timings:<strong>@item.club.Timings</strong></p>
                             <p>
-                                Contact:<strong>@item.club.ContactNo</strong>
+                                Contact:<strong itemprop="telephone">@item.club.ContactNo</strong>
                             </p>
                         </div>
                         @foreach (var meta in item.metaDataList)
                         {
                             if (meta.MetadataType.Equals("Map"))
                             {
-                                <div class="col-sm-3 padtop10 hidden-xs">
+                                <div itemprop="map" class="col-sm-3 padtop10 hidden-xs">
                                     <iframe width="220" height="150" frameborder="0" scrolling="no" marginheight="0"
                                     marginwidth="0" src="@Server.HtmlDecode(meta.MetadataValue)&output=embed"></iframe>
                                     <br />
@@ -61,30 +69,6 @@
                     </div>
                 }
             </div>
-        }
-        <!--div class="col-sm-3 marleft10 panel">
-            <div class="panel-heading">
-                <h2 class="panel-title">
-                    Players in Pune</h2>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        First
-                    </div>
-                    <div class="col-sm-6">
-                        Second
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        Third
-                    </div>
-                    <div class="col-sm-6">
-                        Fourth
-                    </div>
-                </div>
-            </div>
-        </div-->
+        }       
     </div>
 </div>

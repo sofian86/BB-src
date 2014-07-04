@@ -1,129 +1,64 @@
-﻿@model IQueryable<IGrouping<int, BadmintonBuddy.Models.Club>>
-@{
-    ViewBag.Title = "Courts";
+﻿@{
+    ViewBag.Title = "Browse badminton courts across the world";
 }
-<div class="container">
-<div class="row">
-@foreach (var item in Model)
-{
-    bool first = true;
-    foreach (var city in item)
-    {
-        
-        if (first)
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script type="text/javascript">
+        google.load('visualization', '1', { 'packages': ['geomap'] });
+        google.setOnLoadCallback(drawMap);
+
+        function drawMap() {
+            var data = google.visualization.arrayToDataTable([
+        ['Country', 'No Of Courts'],
+        @foreach (var count in (ViewData["CountriesCount"] as Dictionary<string, int>))
         {
-    <div class="col-sm-5">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 class="panel-title bold-font">
-                        <a href="/search?q=@city.City.CityName">@city.City.CityName</a><span class="grey">  @city.City.State.Country.CountryName-@city.City.State.StateName</span>
-                    </h4>
-                </div>
-                <!--div id="@city.City.CityName" class="panel-collapse collapse in"-->
-                    <div class="panel-body">
-                        @foreach(var court in item)
-                        {
-                            <p>
-                                <a href="/court/@court.ClubName/@court.ClubID">@court.ClubName</a>
-                            </p>
-                        }
-                    </div>
-                <!--/div-->
-            </div>
+            <text>['@count.Key.ToString()',@count.Value.ToString()],</text>
+        }      
+      ]);
+
+        var options = {};
+        options['dataMode'] = 'regions';
+        options['width'] = '100%';
+
+
+        var container = document.getElementById('mapdiv');
+        var geomap = new google.visualization.GeoMap(container);
+        geomap.draw(data, options);
+        };
+    
+    
+    
+</script>
+<div class="container">    
+    @Html.Partial("_ModalDialog")
+    <div class="row panel page-min-height">    
+        <div class="alert alert-info fade in martop10 col-sm-10 col-sm-offset-1">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <p><strong>This is an aggregation of court information available across the web. Please help build this list by <a href="#" data-toggle="modal"
+                                data-target="#newCourtInfo">adding information.</a></strong></p>
+        </div>
+        
+        <div class="col-sm-9 martop10" id="mapdiv">
+        </div>
+        <div class="col-sm-3 martop10">
+            @foreach (var cities in (ViewData["CountryCity"] as Dictionary<string, string>))
+            {
+                String[] cityArray = cities.Value.Split(',');                      
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        <h4 class="list-group-item-heading">@cities.Key.ToString()</h4>
+                        <p class="list-group-item-text">
+                            All Courts available in @cities.Key.ToString()</p>
+                    </a>
+                    
+                    @foreach (var city in cityArray)
+                    {
+                        <a href="/Search?q=@city" class="list-group-item">
+                            <h5 class="list-group-item-heading">@city</h5>
+                        </a>
+                        
+                    }
+                </div>                    
+            }
         </div>
     </div>
-            first = false;
-        }
-    
-        
-    }
-}
 </div>
-</div>
-<!--div class="container">
-    <div class="row">
-        <h3>
-            India</h3>
-        <!-- Multiple Rows -->
-        <!--div class="row">
-            <div class="col-sm-5">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading olive-bcg">
-                            <h4 class="panel-title bold-font">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Courts in Pune
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse1" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                Courts in Pune
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading olive-bcg">
-                            <h4 class="panel-title bold-font">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Courts in Pune
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse2" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                Courts in Pune
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Multiple Rows -->
-    <!--/div>
-    <div class="row">
-        <h3>
-            US</h3>
-        <!-- Multiple Rows -->
-        <!--div class="row">
-            <div class="col-sm-5">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading olive-bcg">
-                            <h4 class="panel-title bold-font">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Courts in Pune
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse1" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                Courts in Pune
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading olive-bcg">
-                            <h4 class="panel-title bold-font">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Courts in Pune
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse2" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                Courts in Pune
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Multiple Rows -->
-    <!--/div>
-</div-->

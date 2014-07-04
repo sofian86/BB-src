@@ -12,7 +12,7 @@
     @Styles.Render("~/Content/bb/Site")
     @Scripts.Render("~/Scripts/bb/main")
 </head>
-<body class="padtop70">
+<body itemscope itemtype="http://schema.org/WebPage" class="padtop70">
     <!-- Navigation -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -46,10 +46,7 @@
                     <ul class="nav navbar-nav">
                         @Html.MenuLink("Home", "Home", "Badminton")
                         @Html.MenuLink("Browse Courts", "Courts", "Badminton")
-                        @Html.MenuLink("Latest News", "News", "Badminton")
-                        @*<li class="active"><a href="/home">Home</a></li>
-                        <li><a href="/courts">Browse Courts</a></li>
-                        <li><a href="/news">Latest News</a></li>*@
+                        @*@Html.MenuLink("Latest News", "News", "Badminton")*@                        
                     </ul>
                 </div>
             </div>
@@ -71,7 +68,7 @@
   m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
             })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-            ga('create', 'UA-1817995-3', 'badmintonbuddy.com');
+            ga('create', 'UA-1817995-3', 'auto');
             ga('send', 'pageview');
 
         </script>

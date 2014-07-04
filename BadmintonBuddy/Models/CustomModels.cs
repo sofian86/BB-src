@@ -20,7 +20,7 @@ namespace BadmintonBuddy.Models
     public partial class SearchClubViewModel
     {
         public Club club { get; set; }
-        public List<Metadata> metaDataList { get; set; }
+        public List<Metadata> metaDataList { get; set; }        
     }
     #endregion
 }

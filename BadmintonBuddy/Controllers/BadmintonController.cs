@@ -11,11 +11,14 @@ namespace BadmintonBuddy.Controllers
     {
         BadmintonBuddyRepository repository = new BadmintonBuddyRepository();
 
+        [OutputCache(CacheProfile = "CacheSearch")]
         [HttpGet]
         public ActionResult Search(string q)
         {
             List<SearchClubViewModel> clubList = null;
             string title = String.Empty;
+            string searchFilters = String.Empty;
+            string cityName = String.Empty;
             if (!String.IsNullOrEmpty(q))
             {
                 clubList = repository.GetClubs(q.Trim());
@@ -27,17 +30,29 @@ namespace BadmintonBuddy.Controllers
                         {
                             title = title + searchClub.club.City.CityName;
                         }
-                        if (!title.Contains(searchClub.club.Area))
+                        string[] areaSplit = searchClub.club.Area.Split(',');
+                        foreach (var area in areaSplit)
                         {
-                            title = title + " ," + searchClub.club.Area;
+                            if (!title.Contains(area))
+                            {
+                                title = title + " ," + area;
+                            }
+
+                            if (!searchFilters.Contains(area))
+                            {
+                                searchFilters = searchFilters + " ," + area;
+                            }
                         }
                     }
                     
                 }
+                cityName = clubList.Last().club.City.CityName;
             }
             
             ViewBag.Title = "Badminton Courts in " + title;
             ViewBag.Searchterm = q;
+            ViewBag.SearchFilters = searchFilters;
+            ViewBag.CityName = cityName;
             return View(clubList);
         }
 
@@ -86,6 +101,13 @@ namespace BadmintonBuddy.Controllers
             return View("Message");
         }
 
+        //public ActionResult DeleteClub(int name)
+        //{
+        //    repository.DeleteClub(name);
+        //    ViewBag.Message = "Club Deleted with ID: " + name + " Successfully"; ;
+        //    return View("Message");
+        //}
+
         private ClubViewModel ClubToClubView(Club clubToConvert)
         {
             ClubViewModel viewModel = new ClubViewModel();
@@ -94,7 +116,6 @@ namespace BadmintonBuddy.Controllers
             viewModel.State = clubToConvert.City.State.StateName;
             viewModel.Country = clubToConvert.City.State.Country.CountryName;
             return viewModel;
-
         }
 
 
@@ -147,12 +168,22 @@ namespace BadmintonBuddy.Controllers
 
         }
 
+        //public ActionResult Courts()
+        //{
+        //    var clubs = repository.AllClubs();
+        //    return View(clubs);
+        //}
+        [OutputCache(CacheProfile="CacheAll")]
         public ActionResult Courts()
         {
-            var clubs = repository.AllClubs();
-            return View(clubs);
+            Dictionary<string,int> countryToClubCount = repository.GetCountryofClubs();
+            Dictionary<string, string> clubCities = repository.GetClubCity();
+            ViewData["CountriesCount"] = countryToClubCount;
+            ViewData["CountryCity"] = clubCities;
+            return View();
         }
 
+        [OutputCache(CacheProfile = "CacheCourt")]
         public ActionResult Court(string name,string id)
         {
             var club = new Club();
@@ -177,6 +208,7 @@ namespace BadmintonBuddy.Controllers
             return View(club);
         }
 
+        [OutputCache(CacheProfile="CacheAll")]
         public ActionResult Home()
         {
             return View();

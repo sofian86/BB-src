@@ -1,0 +1,129 @@
+﻿@model IQueryable<IGrouping<int, BadmintonBuddy.Models.Club>>
+@{
+    ViewBag.Title = "Browse badminton courts across the world";
+}
+<div class="container">
+<div class="row">
+@foreach (var item in Model)
+{
+    bool first = true;
+    foreach (var city in item)
+    {
+        
+        if (first)
+        {
+    <div class="col-sm-5">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title bold-font">
+                        <a href="/search?q=@city.City.CityName">@city.City.CityName</a><span class="grey">  @city.City.State.Country.CountryName-@city.City.State.StateName</span>
+                    </h4>
+                </div>
+                <!--div id="@city.City.CityName" class="panel-collapse collapse in"-->
+                    <div class="panel-body">
+                        @foreach(var court in item)
+                        {
+                            <p>
+                                <a href="/court/@court.ClubName/@court.ClubID">@court.ClubName</a>
+                            </p>
+                        }
+                    </div>
+                <!--/div-->
+            </div>
+        </div>
+    </div>
+            first = false;
+        }
+    
+        
+    }
+}
+</div>
+</div>
+<!--div class="container">
+    <div class="row">
+        <h3>
+            India</h3>
+        <!-- Multiple Rows -->
+        <!--div class="row">
+            <div class="col-sm-5">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading olive-bcg">
+                            <h4 class="panel-title bold-font">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Courts in Pune
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                Courts in Pune
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading olive-bcg">
+                            <h4 class="panel-title bold-font">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Courts in Pune
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                Courts in Pune
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Multiple Rows -->
+    <!--/div>
+    <div class="row">
+        <h3>
+            US</h3>
+        <!-- Multiple Rows -->
+        <!--div class="row">
+            <div class="col-sm-5">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading olive-bcg">
+                            <h4 class="panel-title bold-font">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Courts in Pune
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                Courts in Pune
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading olive-bcg">
+                            <h4 class="panel-title bold-font">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Courts in Pune
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                Courts in Pune
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Multiple Rows -->
+    <!--/div>
+</div-->
