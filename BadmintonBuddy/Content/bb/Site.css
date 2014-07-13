@@ -1,8 +1,9 @@
-﻿body{
-    background-color:#e9eaed;
-}
-.header{
+﻿.header{
   color:white;
+}
+.width100
+{
+    width:100%;
 }
 
 .padtop70{

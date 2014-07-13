@@ -9,12 +9,12 @@
     @Html.Partial("_ModalMessage")
     <!--Main content row-->
     <div class="row panel">
-        <ol itemprop="breadcrumb" class="breadcrumb-custom">
-            <li><a href="#">Home</a></li>
-            <li><a href="/courts">Courts</a></li>
-            <li><a href="/search?q=@Model.City.CityName">@Model.City.CityName</a></li>
-            <li><a href="/search?q=@Model.Area">@Model.Area</a></li>
-            <li class="active">@Model.ClubName</li>
+        <ol class="breadcrumb-custom">
+            <li itemprop="breadcrumb"><a href="#">Home</a></li>
+            <li itemprop="breadcrumb"><a href="/courts">Courts</a></li>
+            <li itemprop="breadcrumb"><a href="/search?q=@Model.City.CityName">@Model.City.CityName</a></li>
+            <li itemprop="breadcrumb"><a href="/search?q=@Model.Area">@Model.Area</a></li>
+            <li itemprop="breadcrumb" class="active">@Model.ClubName</li>
         </ol>
         <div itemscope itemtype="http://schema.org/SportsClub" class="col-xs-12 page-min-height">
             <h3 itemprop="name">@Model.ClubName</h3>
@@ -26,9 +26,9 @@
                         <div class="col-xs-3">
                             Address
                         </div>
-                        <div itemprop="http://schema.org/PostalAddress" class="col-xs-8 col-sm-offset-1">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="col-xs-8 col-sm-offset-1">
                             <span itemprop="streetAddress"><p>@Model.Address</p>
-                            <p>@Model.Area</p></span>
+                            <p itemprop="addressRegion">@Model.Area</p></span>
                             <p itemprop="addressLocality">@Model.City.CityName.ToString().ToUpper()</p>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                 <!--Left Main Column-->
                 <!-- Main Column 2 -->
                 <div class="col-md-5">
-                    <div itemprop="map" class="row">
+                    <div class="row">
                         @if (ViewBag.MapURL != "")
                         {
                             <div class="col-xs-12">
@@ -146,10 +146,10 @@
                     <div class="row padtop10">
                         <!-- Button for report error -->
                         <div class="col-xs-10">
-                            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                                 data-target="#newCourtInfo">
                                 New Court Information</button>
-                            <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal"
+                            <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
                                 data-target="#inCorrectData">
                                 Report problem with the court details</button>
                         </div>

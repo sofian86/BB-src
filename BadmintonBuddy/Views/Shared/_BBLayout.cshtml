@@ -6,15 +6,18 @@
     <title>@ViewBag.Title - Welcome to Badminton Buddy</title>
     <meta name="Description" content="@ViewBag.MetaDescription" />
     <meta name="Keywords" content="@ViewBag.MetaKeywords" />
-    @Styles.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+        
+    @Styles.Render("//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/cosmo/bootstrap.min.css")
+    @Styles.Render("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css")
     @Scripts.Render("//code.jquery.com/jquery.min.js")    
     @Scripts.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+
     @Styles.Render("~/Content/bb/Site")
     @Scripts.Render("~/Scripts/bb/main")
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" class="padtop70">
     <!-- Navigation -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="nav-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menunav">
@@ -32,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="searchnav">
                     @using (Html.BeginForm("Search", "Badminton", FormMethod.Get, new { @class = "form-inline", @role = "form" }))
                     { 
-                        <div class="input-group input-group-lg">
+                        <div class="input-group width100">
                             <input class="form-control" type="search" name="q" placeholder="Search badminton courts by Location or Name">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary btn-small">
@@ -42,6 +45,7 @@
                         </div>
                     }
                 </div>
+
                 <div class="collapse navbar-collapse" id="menunav">
                     <ul class="nav navbar-nav">
                         @Html.MenuLink("Home", "Home", "Badminton")
