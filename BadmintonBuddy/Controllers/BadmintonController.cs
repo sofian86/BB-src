@@ -30,7 +30,7 @@ namespace BadmintonBuddy.Controllers
                         {
                             title = title + searchClub.club.City.CityName;
                         }
-                        string[] areaSplit = searchClub.club.Area.Split(',');
+                        string[] areaSplit = searchClub.club.Area.Trim().Split(',');
                         foreach (var area in areaSplit)
                         {
                             if (!title.Contains(area))
@@ -44,15 +44,14 @@ namespace BadmintonBuddy.Controllers
                             }
                         }
                     }
-                    
+                    cityName = clubList.Last().club.City.CityName;
+                    ViewBag.Title = "Badminton Courts in " + title;                    
+                    ViewBag.SearchFilters = searchFilters;
+                    ViewBag.CityName = cityName;
                 }
-                cityName = clubList.Last().club.City.CityName;
+                
             }
-            
-            ViewBag.Title = "Badminton Courts in " + title;
             ViewBag.Searchterm = q;
-            ViewBag.SearchFilters = searchFilters;
-            ViewBag.CityName = cityName;
             return View(clubList);
         }
 

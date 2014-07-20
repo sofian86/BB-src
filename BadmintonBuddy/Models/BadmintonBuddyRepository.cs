@@ -17,10 +17,23 @@ namespace BadmintonBuddy.Models
         public List<SearchClubViewModel> GetClubs(string searchterm)
         {
             List<SearchClubViewModel> searchClubList = new List<SearchClubViewModel>();
-            var clubs = from c in entities.Clubs
-                        where c.City.CityName.Contains(searchterm) || c.ClubName.Contains(searchterm) || c.Area.Contains(searchterm)
-                        select c;
-            foreach (var club in clubs)
+            List<Club> clubList = new List<Club>();
+
+            string[] splitSearch = searchterm.Split(' ');
+            foreach (var search in splitSearch)
+            {
+                var clubs = from c in entities.Clubs
+                            where c.City.CityName.Contains(search) || c.ClubName.Contains(search) || c.Area.Contains(search)
+                            select c;
+                clubList.AddRange(clubs.ToList<Club>());
+            }          
+
+
+            //var clubs = from c in entities.Clubs
+            //            where c.City.CityName.Contains(searchterm) || c.ClubName.Contains(searchterm) || c.Area.Contains(searchterm)
+            //            select c;
+            //foreach (var club in clubs)
+            foreach(var club in clubList)
             {
                 SearchClubViewModel searchClub = new SearchClubViewModel();
                 searchClub.club = club;
