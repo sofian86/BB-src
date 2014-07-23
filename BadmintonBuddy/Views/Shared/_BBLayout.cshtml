@@ -2,18 +2,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @RenderSection("Scripts", required: false)
+    
     <title>@ViewBag.Title - Welcome to Badminton Buddy</title>
     <meta name="Description" content="@ViewBag.MetaDescription" />
     <meta name="Keywords" content="@ViewBag.MetaKeywords" />
-        
-    @Styles.Render("//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/cosmo/bootstrap.min.css")
-    @Styles.Render("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css")
-    @Scripts.Render("//code.jquery.com/jquery.min.js")    
-    @Scripts.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
-
-    @Styles.Render("~/Content/bb/Site")
-    @Scripts.Render("~/Scripts/bb/main")
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" class="padtop70">
     <!-- Navigation -->
@@ -62,6 +54,15 @@
     </div>
     <!-- Footer -->
     <div class="footer">
+    @Scripts.Render("//code.jquery.com/jquery.min.js")
+    @Styles.Render("//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/cosmo/bootstrap.min.css")
+    @Styles.Render("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css")
+    @Styles.Render("//cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css")        
+    @Scripts.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+
+    @Styles.Render("~/Content/bb/Site")
+    @Scripts.Render("~/Scripts/bb/main")
+    @RenderSection("Scripts", required: false)
         @if (!HttpContext.Current.IsDebuggingEnabled)
         {
         <script>

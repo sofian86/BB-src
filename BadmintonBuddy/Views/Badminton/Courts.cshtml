@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "Browse badminton courts across the world";
 }
+
+@section Scripts {
 <script type='text/javascript' src='https://www.google.com/jsapi'></script>
 <script type="text/javascript">
         google.load('visualization', '1', { 'packages': ['geomap'] });
@@ -24,10 +26,8 @@
         var geomap = new google.visualization.GeoMap(container);
         geomap.draw(data, options);
         };
-    
-    
-    
 </script>
+}
 <div class="container">    
     @Html.Partial("_ModalDialog")
     <div class="row panel page-min-height">    
