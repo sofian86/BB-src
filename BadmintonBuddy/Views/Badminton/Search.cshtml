@@ -6,17 +6,17 @@
     <div class="page-header">
         <h2>
             Search results for @ViewBag.Searchterm</h2>
-            @if(@Model.Count() !=0)
-            {
-        <p class="text-muted">
-            Filter by Area :             
-            @foreach(var area in ViewBag.SearchFilters.Split(','))
-            {
-                <a href="/search?q=@area">@area.ToUpper()</a><span> || </span>  
-            }
-            <a class="text-danger" href="/search?q=@ViewBag.CityName">@ViewBag.CityName.ToUpper()</a>
+        @if (@Model.Count() != 0)
+        {
+            <p class="text-muted">
+                Filter by Area :
+                @foreach (var area in ViewBag.SearchFilters.Split(','))
+                {
+                    <a href="/search?q=@area">@area.ToUpper()</a><span> || </span>  
+                }
+                <a class="text-danger" href="/search?q=@ViewBag.CityName">@ViewBag.CityName.ToUpper()</a>
             </p>
-            }
+        }
     </div>
     <!--Modal Dialog -->
     @Html.Partial("_ModalDialog")
@@ -39,8 +39,9 @@
                             <h4>
                                 <a itemprop="name" class="courtlnk" href="/court/@item.club.ClubName/@item.club.ClubID">@item.club.ClubName</a></h4>
                             <p itemprop="http://schema.org/PostalAddress">
-                                <a itemprop="addressRegion" href="/search?q=@item.club.Area">@item.club.Area.ToUpper()</a> ><span itemprop="streetAddress"> @item.club.Address, @item.club.Area</span>,
-                                <span itemprop="addressLocality">@item.club.City.CityName.ToUpper()</span></p>
+                                <a itemprop="addressRegion" href="/search?q=@item.club.Area">@item.club.Area.ToUpper()</a>
+                                ><span itemprop="streetAddress"> @item.club.Address, @item.club.Area</span>, <span
+                                    itemprop="addressLocality">@item.club.City.CityName.ToUpper()</span></p>
                             <p>
                                 Court:<strong>@item.club.Surface.SurfaceType</strong></p>
                             <p>
@@ -50,18 +51,21 @@
                             <p>
                                 Contact:<strong itemprop="telephone">@item.club.ContactNo</strong>
                             </p>
+                            <div class="col-sm-5 visible-xs">
+                                <a class="btn btn-sm btn-primary" href="/court/@item.club.ClubName/@item.club.ClubID">
+                                    View details</a></div>
                         </div>
                         @foreach (var meta in item.metaDataList)
                         {
                             if (meta.MetadataType.Equals("Map"))
                             {
-                                <div itemprop="map" class="col-sm-3 padtop10 hidden-xs">
-                                    <iframe width="220" height="150" frameborder="0" scrolling="no" marginheight="0"
+                            <div itemprop="map" class="col-sm-3 padtop10 hidden-xs">
+                                <iframe width="220" height="150" frameborder="0" scrolling="no" marginheight="0"
                                     marginwidth="0" src="@Server.HtmlDecode(meta.MetadataValue)&output=embed"></iframe>
-                                    <br />
-                                    <small><a href="@Server.HtmlDecode(meta.MetadataValue)"
+                                <br />
+                                <small><a href="@Server.HtmlDecode(meta.MetadataValue)"
                                     style="color: #0000FF; text-align: left">View Larger Map</a></small>
-                                </div>
+                            </div>
                                 break;
 
                             }
@@ -69,6 +73,6 @@
                     </div>
                 }
             </div>
-        }       
+        }
     </div>
 </div>
