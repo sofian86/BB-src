@@ -43,17 +43,43 @@
                                 ><span itemprop="streetAddress"> @item.club.Address, @item.club.Area</span>, <span
                                     itemprop="addressLocality">@item.club.City.CityName.ToUpper()</span></p>
                             <p>
-                                Court:<strong>@item.club.Surface.SurfaceType</strong></p>
-                            <p>
-                                Fees:<strong>@item.club.Fees</strong></p>
-                            <p>
-                                Timings:<strong>@item.club.Timings</strong></p>
-                            <p>
-                                Contact:<strong itemprop="telephone">@item.club.ContactNo</strong>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        Court:</div>
+                                    <div class="col-sm-8">
+                                        <strong>@item.club.Surface.SurfaceType</strong></div>
+                                </div>
                             </p>
-                            <div class="col-sm-5 visible-xs">
-                                <a class="btn btn-sm btn-primary" href="/court/@item.club.ClubName/@item.club.ClubID">
-                                    View details</a></div>
+                            <p>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        Fees:</div>
+                                    <div class="col-sm-8">
+                                        <strong>@item.club.Fees</strong></div>
+                                </div>
+                            </p>
+                            <p>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        Timings:</div>
+                                    <div class="col-sm-8">
+                                        <strong>@item.club.Timings</strong></div>
+                                </div>
+                            </p>
+                            <p>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        Contact:</div>
+                                    <div class="col-sm-8 hidden-xs">
+                                        <a itemprop="name" class="courtlnk" href="/court/@item.club.ClubName/@item.club.ClubID">
+                                            view more information >></a>
+                                    </div>
+                                    <div class="col-sm-5 visible-xs">
+                                        <a class="btn btn-sm btn-primary" href="/court/@item.club.ClubName/@item.club.ClubID">
+                                            View details</a>
+                                    </div>
+                                </div>
+                            </p>
                         </div>
                         @foreach (var meta in item.metaDataList)
                         {

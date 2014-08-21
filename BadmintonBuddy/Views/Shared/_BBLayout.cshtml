@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Welcome to Badminton Buddy</title>
     <meta name="Description" content="@ViewBag.MetaDescription" />
     <meta name="Keywords" content="@ViewBag.MetaKeywords" />
+    @Styles.Render("~/Content/bb/Site")
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" class="padtop70">
     <!-- Navigation -->
@@ -60,7 +61,7 @@
     @Styles.Render("//cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css")        
     @Scripts.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
 
-    @Styles.Render("~/Content/bb/Site")
+    
     @Scripts.Render("~/Scripts/bb/main")
     @RenderSection("Scripts", required: false)
         @if (!HttpContext.Current.IsDebuggingEnabled)
