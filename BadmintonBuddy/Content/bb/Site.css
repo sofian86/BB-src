@@ -68,6 +68,17 @@ table
     padding-left:15px;    
 }
 
+.modal-header
+{
+    background-color:inherit;
+    color:inherit;
+}
+
+.modal-header .close
+{
+    color:inherit;
+}
+
 .breadcrumb-custom>li
 {
     display:inline-block
@@ -99,6 +110,56 @@ table
     #searchnav{
     width:100%;
     font-size:14px;
+    }    
+    .navcont{
+        padding-left:5px;
+        padding-right:5px;
     }
     
   }
+  
+  .jumbo-custom
+  {
+      background-color:#1967be;
+      color:white;
+      text-align:center;
+            
+  }
+  
+  
+  
+  /*Partner search related CSS*/
+  
+ 
+.btn-area{
+	margin:2px;	
+}
+.martop10{
+	margin-top:10px;
+}
+
+.martop100{
+	margin-top:100px;
+}
+
+.leftcolumn{
+	border-right:5px solid orange;
+	margin:5px;	
+}
+
+.signup{
+	border-left: 2px dotted Gray;	
+}
+
+#areatext
+{
+    border: 0px;
+}
+.nopad
+{
+    padding:0px;
+}
+  
+  
+  /*Partner search related CSS*/
+  

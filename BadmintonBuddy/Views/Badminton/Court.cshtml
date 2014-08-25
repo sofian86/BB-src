@@ -146,12 +146,13 @@
                     <div class="row padtop10">
                         <!-- Button for report error -->
                         <div class="col-xs-10">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                            @*<button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                                 data-target="#newCourtInfo">
                                 New Court Information</button>
                             <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
                                 data-target="#inCorrectData">
-                                Report problem with the court details</button>
+                                Report problem with the court details</button>*@
+                                <a class="btn btn-primary btn-block" href="/FindPartner?court=@Model.ClubName">Looking for partner to play here?</a>
                         </div>
                     </div>
                     <!-- Button for report error -->

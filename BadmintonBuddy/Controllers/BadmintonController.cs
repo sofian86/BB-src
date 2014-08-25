@@ -117,7 +117,20 @@ namespace BadmintonBuddy.Controllers
             return viewModel;
         }
 
+        public ActionResult FindPartner()
+        {
+            return View();
+        }
 
+        public void EmailSubscription(string emailAddress,string refferredClub)
+        {
+            Message subscriptionMessage = new Message();
+            subscriptionMessage.MessageType = "SubscriptionEmail";
+            subscriptionMessage.Message1 = emailAddress;
+            subscriptionMessage.Message2 = refferredClub;
+            repository.AddMessage(subscriptionMessage);
+
+        }
         
         public int AdditionalClub(AdditionalClubInfo info)
         {
