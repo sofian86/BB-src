@@ -202,7 +202,7 @@ namespace BadmintonBuddy.Controllers
             if (id != null)
             {
                 int clubId = Int32.Parse(id);
-                club = repository.GetClub(clubId);
+                club = repository.GetClub(clubId);                
 
                 ViewBag.MapURL = repository.GetClubMapURL(clubId);
                 List<Metadata> imageList = repository.GetClubImageURL(clubId);
@@ -218,6 +218,24 @@ namespace BadmintonBuddy.Controllers
             ViewBag.MetaKeywords = club.ClubName+" , " + "badminton court "+club.Area+" , "+ "badminton court "+club.City.CityName;
 
             return View(club);
+        }
+
+        public ActionResult NearbyCourt(string courtIds)
+        {
+
+            List<Club> nearbyCourts = new List<Club>();
+            if (courtIds !=null)
+            {
+            string[] courtlist = courtIds.Split(',');
+            
+                foreach (var court in courtlist)
+                {
+                    nearbyCourts.Add(repository.GetClub(Int32.Parse(court)));
+                }
+            }
+
+            return View(nearbyCourts);
+
         }
 
         [OutputCache(CacheProfile="CacheAll")]

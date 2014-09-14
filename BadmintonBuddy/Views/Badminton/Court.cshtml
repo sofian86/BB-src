@@ -154,6 +154,13 @@
                                 Report problem with the court details</button>*@
                                 <a class="btn btn-primary btn-block" href="/FindPartner?court=@Model.ClubName">Looking for partner to play here?</a>
                         </div>
+
+                        <div class="col-xs-10">
+                            @{
+                                Html.RenderAction("NearbyCourt", "Badminton", new { courtIds = @Model.NearbyClub });
+                            }
+                            
+                        </div>
                     </div>
                     <!-- Button for report error -->
                 </div>
