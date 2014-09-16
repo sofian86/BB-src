@@ -25,6 +25,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("BadmintonBuddyModel", "FK_Metadata_Clubs", "Clubs", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BadmintonBuddy.Models.Club), "Metadata", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BadmintonBuddy.Models.Metadata), true)]
 [assembly: EdmRelationshipAttribute("BadmintonBuddyModel", "FK_State_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BadmintonBuddy.Models.Country), "State", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BadmintonBuddy.Models.State), true)]
 [assembly: EdmRelationshipAttribute("BadmintonBuddyModel", "ClubToCoach", "Clubs", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BadmintonBuddy.Models.Club), "Coach", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BadmintonBuddy.Models.Coach))]
+[assembly: EdmRelationshipAttribute("BadmintonBuddyModel", "webpages_UsersInRoles", "webpages_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BadmintonBuddy.Models.webpages_Roles), "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BadmintonBuddy.Models.UserProfile))]
 
 #endregion
 
@@ -75,6 +76,22 @@ namespace BadmintonBuddy.Models
         #endregion
     
         #region ObjectSet Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AdditionalClubInfo> AdditionalClubInfoes
+        {
+            get
+            {
+                if ((_AdditionalClubInfoes == null))
+                {
+                    _AdditionalClubInfoes = base.CreateObjectSet<AdditionalClubInfo>("AdditionalClubInfoes");
+                }
+                return _AdditionalClubInfoes;
+            }
+        }
+        private ObjectSet<AdditionalClubInfo> _AdditionalClubInfoes;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -143,6 +160,22 @@ namespace BadmintonBuddy.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Message> Messages
+        {
+            get
+            {
+                if ((_Messages == null))
+                {
+                    _Messages = base.CreateObjectSet<Message>("Messages");
+                }
+                return _Messages;
+            }
+        }
+        private ObjectSet<Message> _Messages;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Metadata> Metadatas
         {
             get
@@ -191,38 +224,94 @@ namespace BadmintonBuddy.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<AdditionalClubInfo> AdditionalClubInfoes
+        public ObjectSet<sysdiagram> sysdiagrams
         {
             get
             {
-                if ((_AdditionalClubInfoes == null))
+                if ((_sysdiagrams == null))
                 {
-                    _AdditionalClubInfoes = base.CreateObjectSet<AdditionalClubInfo>("AdditionalClubInfoes");
+                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
                 }
-                return _AdditionalClubInfoes;
+                return _sysdiagrams;
             }
         }
-        private ObjectSet<AdditionalClubInfo> _AdditionalClubInfoes;
+        private ObjectSet<sysdiagram> _sysdiagrams;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Message> Messages
+        public ObjectSet<UserProfile> UserProfiles
         {
             get
             {
-                if ((_Messages == null))
+                if ((_UserProfiles == null))
                 {
-                    _Messages = base.CreateObjectSet<Message>("Messages");
+                    _UserProfiles = base.CreateObjectSet<UserProfile>("UserProfiles");
                 }
-                return _Messages;
+                return _UserProfiles;
             }
         }
-        private ObjectSet<Message> _Messages;
+        private ObjectSet<UserProfile> _UserProfiles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<webpages_Membership> webpages_Membership
+        {
+            get
+            {
+                if ((_webpages_Membership == null))
+                {
+                    _webpages_Membership = base.CreateObjectSet<webpages_Membership>("webpages_Membership");
+                }
+                return _webpages_Membership;
+            }
+        }
+        private ObjectSet<webpages_Membership> _webpages_Membership;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<webpages_OAuthMembership> webpages_OAuthMembership
+        {
+            get
+            {
+                if ((_webpages_OAuthMembership == null))
+                {
+                    _webpages_OAuthMembership = base.CreateObjectSet<webpages_OAuthMembership>("webpages_OAuthMembership");
+                }
+                return _webpages_OAuthMembership;
+            }
+        }
+        private ObjectSet<webpages_OAuthMembership> _webpages_OAuthMembership;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<webpages_Roles> webpages_Roles
+        {
+            get
+            {
+                if ((_webpages_Roles == null))
+                {
+                    _webpages_Roles = base.CreateObjectSet<webpages_Roles>("webpages_Roles");
+                }
+                return _webpages_Roles;
+            }
+        }
+        private ObjectSet<webpages_Roles> _webpages_Roles;
 
         #endregion
 
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AdditionalClubInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAdditionalClubInfoes(AdditionalClubInfo additionalClubInfo)
+        {
+            base.AddObject("AdditionalClubInfoes", additionalClubInfo);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Cities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -257,6 +346,14 @@ namespace BadmintonBuddy.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Messages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMessages(Message message)
+        {
+            base.AddObject("Messages", message);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Metadatas EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToMetadatas(Metadata metadata)
@@ -281,19 +378,43 @@ namespace BadmintonBuddy.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the AdditionalClubInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToAdditionalClubInfoes(AdditionalClubInfo additionalClubInfo)
+        public void AddTosysdiagrams(sysdiagram sysdiagram)
         {
-            base.AddObject("AdditionalClubInfoes", additionalClubInfo);
+            base.AddObject("sysdiagrams", sysdiagram);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Messages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the UserProfiles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToMessages(Message message)
+        public void AddToUserProfiles(UserProfile userProfile)
         {
-            base.AddObject("Messages", message);
+            base.AddObject("UserProfiles", userProfile);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the webpages_Membership EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTowebpages_Membership(webpages_Membership webpages_Membership)
+        {
+            base.AddObject("webpages_Membership", webpages_Membership);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the webpages_OAuthMembership EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTowebpages_OAuthMembership(webpages_OAuthMembership webpages_OAuthMembership)
+        {
+            base.AddObject("webpages_OAuthMembership", webpages_OAuthMembership);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the webpages_Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTowebpages_Roles(webpages_Roles webpages_Roles)
+        {
+            base.AddObject("webpages_Roles", webpages_Roles);
         }
 
         #endregion
@@ -951,6 +1072,30 @@ namespace BadmintonBuddy.Models
         private Nullable<global::System.Int32> _NoOfCourts;
         partial void OnNoOfCourtsChanging(Nullable<global::System.Int32> value);
         partial void OnNoOfCourtsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NearbyClub
+        {
+            get
+            {
+                return _NearbyClub;
+            }
+            set
+            {
+                OnNearbyClubChanging(value);
+                ReportPropertyChanging("NearbyClub");
+                _NearbyClub = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NearbyClub");
+                OnNearbyClubChanged();
+            }
+        }
+        private global::System.String _NearbyClub;
+        partial void OnNearbyClubChanging(global::System.String value);
+        partial void OnNearbyClubChanged();
 
         #endregion
 
@@ -1518,6 +1663,30 @@ namespace BadmintonBuddy.Models
         private global::System.String _Message4;
         partial void OnMessage4Changing(global::System.String value);
         partial void OnMessage4Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Created
+        {
+            get
+            {
+                return _Created;
+            }
+            set
+            {
+                OnCreatedChanging(value);
+                ReportPropertyChanging("Created");
+                _Created = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created");
+                OnCreatedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Created;
+        partial void OnCreatedChanging(Nullable<global::System.DateTime> value);
+        partial void OnCreatedChanged();
 
         #endregion
 
@@ -1975,6 +2144,796 @@ namespace BadmintonBuddy.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Club>("BadmintonBuddyModel.FK_Clubs_Surface", "Clubs", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="BadmintonBuddyModel", Name="sysdiagram")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class sysdiagram : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sysdiagram object.
+        /// </summary>
+        /// <param name="name">Initial value of the name property.</param>
+        /// <param name="principal_id">Initial value of the principal_id property.</param>
+        /// <param name="diagram_id">Initial value of the diagram_id property.</param>
+        public static sysdiagram Createsysdiagram(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
+        {
+            sysdiagram sysdiagram = new sysdiagram();
+            sysdiagram.name = name;
+            sysdiagram.principal_id = principal_id;
+            sysdiagram.diagram_id = diagram_id;
+            return sysdiagram;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 principal_id
+        {
+            get
+            {
+                return _principal_id;
+            }
+            set
+            {
+                Onprincipal_idChanging(value);
+                ReportPropertyChanging("principal_id");
+                _principal_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("principal_id");
+                Onprincipal_idChanged();
+            }
+        }
+        private global::System.Int32 _principal_id;
+        partial void Onprincipal_idChanging(global::System.Int32 value);
+        partial void Onprincipal_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 diagram_id
+        {
+            get
+            {
+                return _diagram_id;
+            }
+            set
+            {
+                if (_diagram_id != value)
+                {
+                    Ondiagram_idChanging(value);
+                    ReportPropertyChanging("diagram_id");
+                    _diagram_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("diagram_id");
+                    Ondiagram_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _diagram_id;
+        partial void Ondiagram_idChanging(global::System.Int32 value);
+        partial void Ondiagram_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                OnversionChanging(value);
+                ReportPropertyChanging("version");
+                _version = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("version");
+                OnversionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _version;
+        partial void OnversionChanging(Nullable<global::System.Int32> value);
+        partial void OnversionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] definition
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_definition);
+            }
+            set
+            {
+                OndefinitionChanging(value);
+                ReportPropertyChanging("definition");
+                _definition = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("definition");
+                OndefinitionChanged();
+            }
+        }
+        private global::System.Byte[] _definition;
+        partial void OndefinitionChanging(global::System.Byte[] value);
+        partial void OndefinitionChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="BadmintonBuddyModel", Name="UserProfile")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class UserProfile : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new UserProfile object.
+        /// </summary>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        /// <param name="userName">Initial value of the UserName property.</param>
+        public static UserProfile CreateUserProfile(global::System.Int32 userId, global::System.String userName)
+        {
+            UserProfile userProfile = new UserProfile();
+            userProfile.UserId = userId;
+            userProfile.UserName = userName;
+            return userProfile;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                if (_UserId != value)
+                {
+                    OnUserIdChanging(value);
+                    ReportPropertyChanging("UserId");
+                    _UserId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("UserId");
+                    OnUserIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserName
+        {
+            get
+            {
+                return _UserName;
+            }
+            set
+            {
+                OnUserNameChanging(value);
+                ReportPropertyChanging("UserName");
+                _UserName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserName");
+                OnUserNameChanged();
+            }
+        }
+        private global::System.String _UserName;
+        partial void OnUserNameChanging(global::System.String value);
+        partial void OnUserNameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("BadmintonBuddyModel", "webpages_UsersInRoles", "webpages_Roles")]
+        public EntityCollection<webpages_Roles> webpages_Roles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<webpages_Roles>("BadmintonBuddyModel.webpages_UsersInRoles", "webpages_Roles");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<webpages_Roles>("BadmintonBuddyModel.webpages_UsersInRoles", "webpages_Roles", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="BadmintonBuddyModel", Name="webpages_Membership")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class webpages_Membership : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new webpages_Membership object.
+        /// </summary>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        /// <param name="passwordFailuresSinceLastSuccess">Initial value of the PasswordFailuresSinceLastSuccess property.</param>
+        /// <param name="password">Initial value of the Password property.</param>
+        /// <param name="passwordSalt">Initial value of the PasswordSalt property.</param>
+        public static webpages_Membership Createwebpages_Membership(global::System.Int32 userId, global::System.Int32 passwordFailuresSinceLastSuccess, global::System.String password, global::System.String passwordSalt)
+        {
+            webpages_Membership webpages_Membership = new webpages_Membership();
+            webpages_Membership.UserId = userId;
+            webpages_Membership.PasswordFailuresSinceLastSuccess = passwordFailuresSinceLastSuccess;
+            webpages_Membership.Password = password;
+            webpages_Membership.PasswordSalt = passwordSalt;
+            return webpages_Membership;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                if (_UserId != value)
+                {
+                    OnUserIdChanging(value);
+                    ReportPropertyChanging("UserId");
+                    _UserId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("UserId");
+                    OnUserIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CreateDate
+        {
+            get
+            {
+                return _CreateDate;
+            }
+            set
+            {
+                OnCreateDateChanging(value);
+                ReportPropertyChanging("CreateDate");
+                _CreateDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreateDate");
+                OnCreateDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CreateDate;
+        partial void OnCreateDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCreateDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ConfirmationToken
+        {
+            get
+            {
+                return _ConfirmationToken;
+            }
+            set
+            {
+                OnConfirmationTokenChanging(value);
+                ReportPropertyChanging("ConfirmationToken");
+                _ConfirmationToken = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ConfirmationToken");
+                OnConfirmationTokenChanged();
+            }
+        }
+        private global::System.String _ConfirmationToken;
+        partial void OnConfirmationTokenChanging(global::System.String value);
+        partial void OnConfirmationTokenChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsConfirmed
+        {
+            get
+            {
+                return _IsConfirmed;
+            }
+            set
+            {
+                OnIsConfirmedChanging(value);
+                ReportPropertyChanging("IsConfirmed");
+                _IsConfirmed = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsConfirmed");
+                OnIsConfirmedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsConfirmed;
+        partial void OnIsConfirmedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsConfirmedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastPasswordFailureDate
+        {
+            get
+            {
+                return _LastPasswordFailureDate;
+            }
+            set
+            {
+                OnLastPasswordFailureDateChanging(value);
+                ReportPropertyChanging("LastPasswordFailureDate");
+                _LastPasswordFailureDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastPasswordFailureDate");
+                OnLastPasswordFailureDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastPasswordFailureDate;
+        partial void OnLastPasswordFailureDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastPasswordFailureDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PasswordFailuresSinceLastSuccess
+        {
+            get
+            {
+                return _PasswordFailuresSinceLastSuccess;
+            }
+            set
+            {
+                OnPasswordFailuresSinceLastSuccessChanging(value);
+                ReportPropertyChanging("PasswordFailuresSinceLastSuccess");
+                _PasswordFailuresSinceLastSuccess = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PasswordFailuresSinceLastSuccess");
+                OnPasswordFailuresSinceLastSuccessChanged();
+            }
+        }
+        private global::System.Int32 _PasswordFailuresSinceLastSuccess;
+        partial void OnPasswordFailuresSinceLastSuccessChanging(global::System.Int32 value);
+        partial void OnPasswordFailuresSinceLastSuccessChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Password
+        {
+            get
+            {
+                return _Password;
+            }
+            set
+            {
+                OnPasswordChanging(value);
+                ReportPropertyChanging("Password");
+                _Password = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Password");
+                OnPasswordChanged();
+            }
+        }
+        private global::System.String _Password;
+        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> PasswordChangedDate
+        {
+            get
+            {
+                return _PasswordChangedDate;
+            }
+            set
+            {
+                OnPasswordChangedDateChanging(value);
+                ReportPropertyChanging("PasswordChangedDate");
+                _PasswordChangedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PasswordChangedDate");
+                OnPasswordChangedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _PasswordChangedDate;
+        partial void OnPasswordChangedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnPasswordChangedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PasswordSalt
+        {
+            get
+            {
+                return _PasswordSalt;
+            }
+            set
+            {
+                OnPasswordSaltChanging(value);
+                ReportPropertyChanging("PasswordSalt");
+                _PasswordSalt = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PasswordSalt");
+                OnPasswordSaltChanged();
+            }
+        }
+        private global::System.String _PasswordSalt;
+        partial void OnPasswordSaltChanging(global::System.String value);
+        partial void OnPasswordSaltChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PasswordVerificationToken
+        {
+            get
+            {
+                return _PasswordVerificationToken;
+            }
+            set
+            {
+                OnPasswordVerificationTokenChanging(value);
+                ReportPropertyChanging("PasswordVerificationToken");
+                _PasswordVerificationToken = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PasswordVerificationToken");
+                OnPasswordVerificationTokenChanged();
+            }
+        }
+        private global::System.String _PasswordVerificationToken;
+        partial void OnPasswordVerificationTokenChanging(global::System.String value);
+        partial void OnPasswordVerificationTokenChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> PasswordVerificationTokenExpirationDate
+        {
+            get
+            {
+                return _PasswordVerificationTokenExpirationDate;
+            }
+            set
+            {
+                OnPasswordVerificationTokenExpirationDateChanging(value);
+                ReportPropertyChanging("PasswordVerificationTokenExpirationDate");
+                _PasswordVerificationTokenExpirationDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PasswordVerificationTokenExpirationDate");
+                OnPasswordVerificationTokenExpirationDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _PasswordVerificationTokenExpirationDate;
+        partial void OnPasswordVerificationTokenExpirationDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnPasswordVerificationTokenExpirationDateChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="BadmintonBuddyModel", Name="webpages_OAuthMembership")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class webpages_OAuthMembership : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new webpages_OAuthMembership object.
+        /// </summary>
+        /// <param name="provider">Initial value of the Provider property.</param>
+        /// <param name="providerUserId">Initial value of the ProviderUserId property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        public static webpages_OAuthMembership Createwebpages_OAuthMembership(global::System.String provider, global::System.String providerUserId, global::System.Int32 userId)
+        {
+            webpages_OAuthMembership webpages_OAuthMembership = new webpages_OAuthMembership();
+            webpages_OAuthMembership.Provider = provider;
+            webpages_OAuthMembership.ProviderUserId = providerUserId;
+            webpages_OAuthMembership.UserId = userId;
+            return webpages_OAuthMembership;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Provider
+        {
+            get
+            {
+                return _Provider;
+            }
+            set
+            {
+                if (_Provider != value)
+                {
+                    OnProviderChanging(value);
+                    ReportPropertyChanging("Provider");
+                    _Provider = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("Provider");
+                    OnProviderChanged();
+                }
+            }
+        }
+        private global::System.String _Provider;
+        partial void OnProviderChanging(global::System.String value);
+        partial void OnProviderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ProviderUserId
+        {
+            get
+            {
+                return _ProviderUserId;
+            }
+            set
+            {
+                if (_ProviderUserId != value)
+                {
+                    OnProviderUserIdChanging(value);
+                    ReportPropertyChanging("ProviderUserId");
+                    _ProviderUserId = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("ProviderUserId");
+                    OnProviderUserIdChanged();
+                }
+            }
+        }
+        private global::System.String _ProviderUserId;
+        partial void OnProviderUserIdChanging(global::System.String value);
+        partial void OnProviderUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="BadmintonBuddyModel", Name="webpages_Roles")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class webpages_Roles : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new webpages_Roles object.
+        /// </summary>
+        /// <param name="roleId">Initial value of the RoleId property.</param>
+        /// <param name="roleName">Initial value of the RoleName property.</param>
+        public static webpages_Roles Createwebpages_Roles(global::System.Int32 roleId, global::System.String roleName)
+        {
+            webpages_Roles webpages_Roles = new webpages_Roles();
+            webpages_Roles.RoleId = roleId;
+            webpages_Roles.RoleName = roleName;
+            return webpages_Roles;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RoleId
+        {
+            get
+            {
+                return _RoleId;
+            }
+            set
+            {
+                if (_RoleId != value)
+                {
+                    OnRoleIdChanging(value);
+                    ReportPropertyChanging("RoleId");
+                    _RoleId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RoleId");
+                    OnRoleIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _RoleId;
+        partial void OnRoleIdChanging(global::System.Int32 value);
+        partial void OnRoleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String RoleName
+        {
+            get
+            {
+                return _RoleName;
+            }
+            set
+            {
+                OnRoleNameChanging(value);
+                ReportPropertyChanging("RoleName");
+                _RoleName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("RoleName");
+                OnRoleNameChanged();
+            }
+        }
+        private global::System.String _RoleName;
+        partial void OnRoleNameChanging(global::System.String value);
+        partial void OnRoleNameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("BadmintonBuddyModel", "webpages_UsersInRoles", "UserProfile")]
+        public EntityCollection<UserProfile> UserProfiles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserProfile>("BadmintonBuddyModel.webpages_UsersInRoles", "UserProfile");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserProfile>("BadmintonBuddyModel.webpages_UsersInRoles", "UserProfile", value);
                 }
             }
         }

@@ -128,6 +128,7 @@ namespace BadmintonBuddy.Controllers
             subscriptionMessage.MessageType = "SubscriptionEmail";
             subscriptionMessage.Message1 = emailAddress;
             subscriptionMessage.Message2 = refferredClub;
+            subscriptionMessage.Created = DateTime.Now;
             repository.AddMessage(subscriptionMessage);
 
         }
@@ -145,6 +146,7 @@ namespace BadmintonBuddy.Controllers
         [HttpPost]
         public Int32 AddMessage(Message message)
         {
+            message.Created = DateTime.Now;
             if (ModelState.IsValid)
             {
                 return repository.AddMessage(message);
