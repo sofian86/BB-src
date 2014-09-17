@@ -69,6 +69,12 @@ namespace BadmintonBuddy.Controllers
         }
 
         [HttpGet]
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult AddClub()
         {
             return View();
