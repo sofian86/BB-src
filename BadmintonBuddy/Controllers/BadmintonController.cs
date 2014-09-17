@@ -62,6 +62,13 @@ namespace BadmintonBuddy.Controllers
         //}
 
         [HttpGet]
+        public ActionResult MyMsg()
+        {
+            List<Message> allMessages = repository.AllMessages();
+            return View(allMessages);
+        }
+
+        [HttpGet]
         public ActionResult AddClub()
         {
             return View();

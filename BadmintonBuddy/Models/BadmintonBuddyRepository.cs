@@ -58,6 +58,15 @@ namespace BadmintonBuddy.Models
         //    entities.SaveChanges();
         //}
 
+        public List<Message> AllMessages()
+        {
+            var messages = from msg in entities.Messages
+                           orderby msg.Created descending
+                           select msg;            
+
+            return messages.ToList();
+        }
+
         public Dictionary<string,int> GetCountryofClubs()
         {
             var clubs = from c in entities.Clubs
@@ -211,9 +220,9 @@ namespace BadmintonBuddy.Models
             }
 
             editClubView.Club.CityID = cityId;            
-            System.Data.Entity.DbContext dbContext = new System.Data.Entity.DbContext(entities,true);
-            dbContext.Entry(editClubView.Club).State = System.Data.EntityState.Modified;
-            dbContext.SaveChanges();
+            //System.Data.Entity.DbContext dbContext = new System.Data.Entity.DbContext(entities,true);
+            //dbContext.Entry(editClubView.Club).State = System.Data.EntityState.Modified;
+            //dbContext.SaveChanges();
             
             return editClubView.Club;            
         }

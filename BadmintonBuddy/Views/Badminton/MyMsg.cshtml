@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BadmintonBuddy.Models.Message>
+
+@{
+    ViewBag.Title = "MyMsg";
+}
+
+<h2>MyMsg</h2>
+
+<div class="container">
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MessageType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>    
+        </tr>
+    
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MessageType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MessageID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MessageID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MessageID })
+        </td>
+    </tr>
+}
+</tbody>
+
+</table>
+</div>
