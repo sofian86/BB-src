@@ -1,5 +1,28 @@
-﻿.header{
+﻿html{
+    height:100%;
+}
+
+body{
+    min-height:100%;
+}
+
+
+.header{
   color:white;
+}
+
+.footer
+{
+    bottom:0;
+    height:35px;
+    position:absolute;
+    border-top:1px solid #e4e4e4;
+    background:#f2f2f2;
+}
+
+.footer a
+{    
+    color:#666;
 }
 .width100
 {
