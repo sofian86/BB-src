@@ -1,14 +1,20 @@
-﻿html{
+﻿html,body{
     height:100%;
 }
 
-body{
+#wrapper
+{
     min-height:100%;
+    position:relative;
 }
-
 
 .header{
   color:white;
+}
+
+.content
+{
+    padding-bottom:35px;
 }
 
 .footer
@@ -56,12 +62,6 @@ body{
 {
     background-color:lightgoldenrodyellow;
 }
-
-.page-min-height
-{
-    min-height:750px;
-}
-
 .white-bg{
   background-color:#ffffff;
 }
