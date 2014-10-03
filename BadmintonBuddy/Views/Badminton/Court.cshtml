@@ -5,8 +5,8 @@
     ViewBag.MetaKeywords = @ViewBag.MetaKeywords;
 }
 <div class="container">
-    @Html.Partial("_ModalDialog")
-    @Html.Partial("_ModalMessage")
+    @*@Html.Partial("_ModalDialog")
+    @Html.Partial("_ModalMessage")*@
     <!--Main content row-->
     <div class="row panel">
         <ol class="breadcrumb-custom">
@@ -27,8 +27,10 @@
                             Address
                         </div>
                         <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="col-xs-8 col-sm-offset-1">
-                            <span itemprop="streetAddress"><p>@Model.Address</p>
-                            <p itemprop="addressRegion">@Model.Area</p></span>
+                            <span itemprop="streetAddress">
+                                <p>@Model.Address</p>
+                                <p itemprop="addressRegion">@Model.Area</p>
+                            </span>
                             <p itemprop="addressLocality">@Model.City.CityName.ToString().ToUpper()</p>
                         </div>
                     </div>
@@ -151,15 +153,13 @@
                                 New Court Information</button>
                             <button type="button" class="btn btn-danger btn-block" data-toggle="modal"
                                 data-target="#inCorrectData">
-                                Report problem with the court details</button>*@
-                                <a class="btn btn-primary btn-block" href="/FindPartner?court=@Model.ClubName">Looking for partner to play here?</a>
+                                Report problem with the court details</button>*@ <a class="btn btn-primary btn-block" href="/FindPartner?court=@Model.ClubName">
+                                    Looking for partner to play here?</a>
                         </div>
-
                         <div class="col-xs-10">
                             @{
                                 Html.RenderAction("NearbyCourt", "Badminton", new { courtIds = @Model.NearbyClub });
                             }
-                            
                         </div>
                     </div>
                     <!-- Button for report error -->
