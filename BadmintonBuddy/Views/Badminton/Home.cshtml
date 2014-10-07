@@ -1,10 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home";
-    ViewBag.MetaDescription = "Search for Badminton Courts across the globe";
-    ViewBag.MetaKeywords = "Badminton, badminton courts, india badminton courts, badminton courts pune, badminton courts bangalore, badminton courts chennai,badminton courts mumbai";
+    ViewBag.MetaDescription = "Find badminton courts, connect with badminton partners, look for badminton coach. The only dedicated badminton site to connect with other players like you!";
+    ViewBag.MetaKeywords = "badminton courts, india badminton courts, badminton courts pune, badminton courts bangalore, badminton courts chennai,badminton courts mumbai, badminton partners, badminton coaches";
 }
 @Styles.Render("~/Content/bb/Main")
-<div class="container">
+<div class="container">            
             <div class="row padtop70">
                 <div class="col-sm-6 col-sm-offset-3">
                     @using(Html.BeginForm("Search", "Badminton", FormMethod.Get, new {@class="form-inline",@role="form" })){                    
@@ -16,7 +16,7 @@
                             </button>
                         </span>
                     </div>
-                    }                    
-                </div>
-            </div>            
+                    }                     
+                </div>                
+            </div>                        
         </div>
